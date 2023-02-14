@@ -281,10 +281,20 @@ _Note: install xsel for nvim_
 
 ## Zsh
 
-### Pugins plugins of oh my zsh
+### OhMyZsh's Plugins
+
+#### Default
+
+- git
+- archlinux
+- command-not-found
+- rust
+
+#### Custom 
 
 - zsh-syntax-highlighting
 - zsh-autosuggestions
+
 
 ### Starship, prompt editor
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus felis nulla, quis bibendum nulla varius ut. Morbi ligula tellus, tincidunt sed vulputate eget, hendrerit in ex. 

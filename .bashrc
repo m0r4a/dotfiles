@@ -44,8 +44,9 @@ alias prpython='cd ~/workspace/python'
 
 alias cfgqtile='code ~/.config/qtile'
 alias cfgbash='nvim ~/.bashrc'
+alias cfgzsh='nvim ~/.zshrc'
 alias cfgalacritty='nvim ~/.config/alacritty/alacritty.yml'
-export PATH=$PATH:/home/m0r4a/.spicetify
+
 
 
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/scripts
