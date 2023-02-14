@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cs="${1,,}"
+
+FILE=~/.config/qtile/settings/ColorSchemes/$cs.py
+
+if [ -f "$FILE" ]; then
+	cat ~/.config/qtile/settings/ColorSchemes/$cs.py > ~/.config/qtile/settings/ColorScheme.py
+	echo "ColorScheme changed"
+else 
+    echo "The list of available colorschemes are:"
+    ls ~/.config/qtile/settings/ColorSchemes/ | sed 's/__pycache__//' | sed 's/.py/ /' | sed 's/ColorScheme//' | grep "\S"
+fi
+
+if [ $cs = "gruvbox" ]; then
+	feh --bg-fill ~/Wallpapers/GruvBox.png &
+fi
+
+if [ $cs = "cyberpunk" ]; then
+	feh --bg-fill ~/Wallpapers/city.jpg &
+fi

@@ -1,0 +1,4 @@
+2023-02-14 03:01:23.922 [info] Initial editor state {"filesToOpenOrCreate":[{"fileUri":{"$mid":1,"path":"/home/m0r4a/.config/eww/eww.yuck","scheme":"file"},"type":1,"exists":true,"options":{}}],"filesToDiff":[],"filesToMerge":[]}
+2023-02-14 03:01:25.887 [info] Started initializing default profile extensions in extensions installation folder. file:///home/m0r4a/.vscode-oss/extensions
+2023-02-14 03:01:27.092 [info] Completed initializing default profile extensions in extensions installation folder. file:///home/m0r4a/.vscode-oss/extensions
+2023-02-14 03:01:31.139 [info] [perf] Render performance baseline is 529ms

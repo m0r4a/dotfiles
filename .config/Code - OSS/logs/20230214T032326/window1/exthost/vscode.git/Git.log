@@ -1,0 +1,31 @@
+2023-02-14 03:23:39.633 [info] Log level: Info
+2023-02-14 03:23:39.633 [info] Validating found git in: "git"
+2023-02-14 03:23:39.633 [info] Using git "2.39.1" from "git"
+2023-02-14 03:23:39.633 [info] > git rev-parse --show-toplevel [10ms]
+2023-02-14 03:23:39.651 [info] > git rev-parse --git-dir --git-common-dir [18ms]
+2023-02-14 03:23:39.672 [info] Open repository: /home/m0r4a/workspace/rust/learning/HelloWorld-1
+2023-02-14 03:23:39.701 [info] > git rev-parse --show-toplevel [16ms]
+2023-02-14 03:23:39.717 [info] No remotes found in the git config file.
+2023-02-14 03:23:39.720 [info] > git config --get commit.template [19ms]
+2023-02-14 03:23:39.726 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [11ms]
+2023-02-14 03:23:39.755 [info] > git status -z -uall [18ms]
+2023-02-14 03:23:39.761 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [8ms]
+2023-02-14 03:23:39.786 [info] No remotes found in the git config file.
+2023-02-14 03:23:39.798 [info] > git config --get commit.template [12ms]
+2023-02-14 03:23:39.802 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [5ms]
+2023-02-14 03:23:39.832 [info] > git status -z -uall [19ms]
+2023-02-14 03:23:39.836 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [6ms]
+2023-02-14 03:23:40.203 [info] > git check-ignore -v -z --stdin [7ms]
+2023-02-14 03:23:44.843 [info] > git check-ignore -v -z --stdin [3ms]
+2023-02-14 03:23:46.265 [info] > git show --textconv :src/main.rs [54ms]
+2023-02-14 03:23:46.267 [info] > git ls-files --stage -- /home/m0r4a/workspace/rust/learning/HelloWorld-1/src/main.rs [3ms]
+2023-02-14 03:23:56.565 [info] > git show --textconv :Cargo.toml [20ms]
+2023-02-14 03:23:56.573 [info] > git ls-files --stage -- /home/m0r4a/workspace/rust/learning/HelloWorld-1/Cargo.toml [9ms]
+2023-02-14 03:24:33.375 [info] > git show --textconv :src/main.rs [11ms]
+2023-02-14 03:24:33.376 [info] > git ls-files --stage -- /home/m0r4a/workspace/rust/learning/HelloWorld-1/src/main.rs [4ms]
+2023-02-14 03:25:19.409 [info] > git check-ignore -v -z --stdin [2ms]
+2023-02-14 03:25:34.125 [info] > git config --get commit.template [6ms]
+2023-02-14 03:25:34.143 [info] No remotes found in the git config file.
+2023-02-14 03:25:34.151 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [6ms]
+2023-02-14 03:25:34.200 [info] > git status -z -uall [15ms]
+2023-02-14 03:25:34.207 [info] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [11ms]

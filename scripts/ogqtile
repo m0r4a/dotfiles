@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cp ~/.config/qtile/settings/.ogwidgets.py ~/.config/qtile/settings/widgets.py
