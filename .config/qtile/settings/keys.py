@@ -49,7 +49,7 @@ keys = [
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch FireFox"),
     Key([mod], "s", lazy.spawn("steam"), desc="Launch steam"),
     Key([mod], "o", lazy.spawn("obsidian"), desc="Launch obsidian"),
-    Key([mod], "p", lazy.spawn("flatpak run com.github.alainm23.planner"), desc="Launch Planner"),
+    Key([mod], "p", lazy.spawn("bitwarden-desktop"), desc="Launch Bitwarden"),
 
     # Rofi
     Key([mod], "space", lazy.spawn("rofi -show run -show-icons"), desc="Launch Rofi"),

@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/scripts
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/scripts:/snap/bin
 
 
 # Path to your oh-my-zsh installation.
@@ -14,26 +14,7 @@ ZSH_THEME="robbyrussell"
 # Case-sensitive completion.
 CASE_SENSITIVE="true"
 
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 
 # ------ Plugins ------
@@ -87,6 +68,10 @@ alias ga='git add'
 alias gs='git status'
 alias gc='git clone'
 
+# - Edit files -
+
+alias rdm='nvim ~/README.md'
+
 # - Directorios Rapidos -
 
 ## -- go --
@@ -108,10 +93,20 @@ alias cfgbash='nvim ~/.bashrc'
 alias cfgzsh='nvim ~/.zshrc'
 alias cfgalacritty='nvim ~/.config/alacritty/alacritty.yml'
 
+# Neofetch duh
 
 neofetch
+
+# Cargo, rust's compiler
+
 . "$HOME/.cargo/env"
 
+# Syntax highlighting plugin for oh-my-zsh
+
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Starship prompt editor
+
+eval "$(starship init zsh)"
 
 

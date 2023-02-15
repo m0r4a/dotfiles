@@ -133,7 +133,7 @@ shutdown now
 #### My stuff
 
 ``` bash
-sudo pacman -S code pavucontrol obsidian arandr neofetch scrot brightnessctl imv feh xcalib bat lsd unzip python-pip lightdm-webkit2-greeter openssh
+sudo pacman -S code pavucontrol obsidian arandr neofetch scrot brightnessctl imv feh xcalib bat lsd unzip python-pip lightdm-webkit2-greeter openssh xdg-utils
 ```
 
 ## Packages
@@ -166,8 +166,6 @@ sudo pacman -S code pavucontrol obsidian arandr neofetch scrot brightnessctl imv
 | oh-my-zsh | better zsh |
 | starship | prompt editor |
 
-
-
 ### Without custom config
 
 #### GUI
@@ -180,6 +178,8 @@ sudo pacman -S code pavucontrol obsidian arandr neofetch scrot brightnessctl imv
 | arandr | Graphical Screen Manager |
 | simplescreenrecorder | Records Screen |
 | eww | Wacky widgets |
+| bitwarden | Password manager |
+| todoist | Todo-list app |
 
 
 
@@ -199,6 +199,8 @@ sudo pacman -S code pavucontrol obsidian arandr neofetch scrot brightnessctl imv
 | imv | image preview tool |
 | papirus-icon-theme | self exp. |
 | rustup | compiler for rust |
+| snap | package installer |
+| xdg-utils | manage XDG MIME apps |
 
 
 ### Installed programming lang.
@@ -409,4 +411,23 @@ git config --global user.name "Your Name"
 
 ``` bash
 git config --global init.defaultBranch <name>
+```
+
+## Todoist
+
+### You have to have configured a default desktop, here's little guide about how to do it on Arch
+
+#### Install xdg-utils
+
+```bash
+sudo pacman -S xdg-utils
+```
+
+#### Run this commands _(if you use something else than firefox, change it)_
+
+```bash
+xdg-mime query default x-scheme-handler/http
+firefox
+xdg-settings get default-web-browser
+firefox
 ```
