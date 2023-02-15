@@ -92,6 +92,7 @@ alias cfgqtile='code ~/.config/qtile'
 alias cfgbash='nvim ~/.bashrc'
 alias cfgzsh='nvim ~/.zshrc'
 alias cfgalacritty='nvim ~/.config/alacritty/alacritty.yml'
+alias cfgstarship='nvim ~/.config/starship/starship.toml'
 
 # Neofetch duh
 
@@ -109,4 +110,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 eval "$(starship init zsh)"
 
+# Changing the default toml location for Starship
+
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 

@@ -33,7 +33,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # Wallpaper
-feh --bg-fill Wallpapers/city.jpg &
+feh --bg-fill Wallpapers/GruvBox.png &
 # Picom
 picom &
 # Notification mgr

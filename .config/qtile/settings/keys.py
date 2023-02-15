@@ -48,8 +48,9 @@ keys = [
     Key([mod], "Return", lazy.spawn(my_terminal), desc="Launch terminal"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch FireFox"),
     Key([mod], "s", lazy.spawn("steam"), desc="Launch steam"),
-    Key([mod], "o", lazy.spawn("obsidian"), desc="Launch obsidian"),
     Key([mod], "p", lazy.spawn("bitwarden-desktop"), desc="Launch Bitwarden"),
+    Key([mod], "o", lazy.spawn("obsidian"), desc="Launch obsidian"),
+    Key([mod], "r", lazy.spawn("todoist"), desc="Launch todoist"),
 
     # Rofi
     Key([mod], "space", lazy.spawn("rofi -show run -show-icons"), desc="Launch Rofi"),
