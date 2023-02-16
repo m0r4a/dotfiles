@@ -16,7 +16,8 @@ $directory\
 
 $rust\
 $python\
-[](fg:#98971a)\
+[](fg:#98971a)
+[ > ](fg:#98971a)\
 """
 
 # Disable the blank line at the start of the prompt
@@ -68,6 +69,10 @@ format = '[ $symbol $branch ]($style)'
 [git_status]
 style = "bg:#FCA17D"
 format = '[$all_status$ahead_behind ]($style)'
+
+[cmd_duration]
+min_time = 500
+format = '[$duration](bold yellow)'
 
 [rust]
 symbol = ""
