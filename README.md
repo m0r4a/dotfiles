@@ -136,6 +136,12 @@ shutdown now
 sudo pacman -S code pavucontrol obsidian arandr neofetch scrot brightnessctl imv feh xcalib bat lsd unzip python-pip lightdm-webkit2-greeter openssh xdg-utils
 ```
 
+_With yay_
+
+```bash
+yay -S example 
+```
+
 ## Packages
 
 ### With custom config

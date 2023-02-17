@@ -1,7 +1,6 @@
 from libqtile import widget
 from libqtile.command import lazy
 from libqtile import qtile
-from .ColorScheme import ColorScheme
 
 # Esto es new widgets
 
@@ -45,10 +44,10 @@ def myseparator():
     foreground=[pp[8],pp[7]],
     )
 
-left = ColorScheme["left"]
-mid = ColorScheme["mid"]
-midsqr = ColorScheme["midsqr"]
-right = ColorScheme["right"]
+left = "#00B8FF"
+mid = "#CD00FF"
+midsqr = "#D600FF"
+right = "#00DC78"
 
 primary_widgets = [
     ### Left
