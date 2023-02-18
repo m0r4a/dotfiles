@@ -3,14 +3,14 @@
 cs="${1,,}"
 
 OGBar=$(sed -n 11p ~/.config/qtile/settings/screens.py)
-FILE=~/.config/qtile/settings/ColorSchemes/$cs.py
+FILE=~/.config/qtile/settings/themes/$cs.py
 
 if [ -f "$FILE" ]; then
-	cat ~/.config/qtile/settings/ColorSchemes/$cs.py > ~/.config/qtile/settings/widgets.py
-	echo "ColorScheme changed"
+	cat ~/.config/qtile/settings/themes/$cs.py > ~/.config/qtile/settings/widgets.py
+	echo "Theme changed"
 else 
-    echo "The list of available colorschemes are:"
-    ls ~/.config/qtile/settings/ColorSchemes/ | sed 's/__pycache__//' | sed 's/.py/ /' | sed 's/ColorScheme//' | grep "\S"
+    echo "The list of available themes are:"
+    ls ~/.config/qtile/settings/themes/ | sed -e 's/__pycache__//' -e 's/.py/ /' | grep "\S"
 fi
 
 ### Cyberpunk
@@ -22,7 +22,9 @@ if [ $cs = "cyberpunk" ]; then
 	sed -i "s/$OGBar/$CPBar/" ~/.config/qtile/settings/screens.py
 fi
 
-GBBar='     return bar.Bar(widgets, 25, opacity=1,background="#FFFFFF")'
+### Gruvbox
+
+GBBar='     return bar.Bar(widgets, 30, opacity=1,background="#282120")'
 
 if [ $cs = "gruvbox" ]; then
 	feh --bg-fill ~/Wallpapers/GruvBox.png &
@@ -30,4 +32,9 @@ if [ $cs = "gruvbox" ]; then
 fi
 
 
-qtile cmd-obj -o cmd -f reload_config
+
+# Config reload
+
+if [ -f "$FILE" ]; then
+	qtile cmd-obj -o cmd -f reload_config
+fi

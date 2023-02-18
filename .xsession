@@ -42,3 +42,5 @@ dunst &
 xrandr --output LVDS-1 --primary --mode 1280x800 --pos 0x0 --rotate normal --output DP-1 --mode 1280x800 --pos 1280x0 --rotate normal
 # Color calibration
 xcalib ~/ColorProfile.icc &
+# Network manager applet
+nm-applet &

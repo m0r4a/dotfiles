@@ -93,6 +93,7 @@ alias cfgbash='nvim ~/.bashrc'
 alias cfgzsh='nvim ~/.zshrc'
 alias cfgalacritty='nvim ~/.config/alacritty/alacritty.yml'
 alias cfgstarship='nvim ~/.config/starship/starship.toml'
+alias cfgly='sudo nvim /etc/ly/config.ini'
 
 # Neofetch duh
 

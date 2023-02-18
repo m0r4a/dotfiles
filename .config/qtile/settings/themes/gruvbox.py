@@ -104,9 +104,7 @@ primary_widgets = [
         myseparator(Green),
         placeHolder(),
         myseparator(Blue),
-        widget.Systray(
-        padding=2,
-        ),
+        placeHolder(),
         myseparator(Yellow),
         placeHolder(),
         myseparator(Red),
