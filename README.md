@@ -157,6 +157,7 @@ yay -S example
 | neovim | text editor | Pacman |
 | rofi | launcher |
 | spectacle | screenshot utility |
+| ly | Display Manager |
 
 
 
