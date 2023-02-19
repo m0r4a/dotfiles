@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Checking if the current theme is gruvbox
+
+Theme=$(sed -n 1p .config/qtile/settings/widgets.py)
+
+# Getting the Systray status 
+SysTray=$(sed -n 172p ~/.config/qtile/settings/widgets.py)
+
+# Case 0 where the systray is enabled
+wgState0='        widget.Systray(background=BGoff, padding=2),'
+sepState0='        myseparator2(Blue),'
+
+# Case 1 where the systray is desabled
+wgState1="#Systray substitute"
+sepState1="#Separator substitute"
+
+if [ "$Theme" = "# Gruvbox" ]; then
+	if [ "$SysTray" = "$wgState0" ]; then
+		sed -i "s/$wgState0/$wgState1/" ~/.config/qtile/settings/widgets.py
+		sed -i "s/$sepState0/$sepState1/" ~/.config/qtile/settings/widgets.py
+		qtile cmd-obj -o cmd -f reload_config
+	fi
+
+	if [ "$SysTray" = "$wgState1" ]; then
+		sed -i "s/$wgState1/$wgState0/" ~/.config/qtile/settings/widgets.py
+		sed -i "s/$sepState1/$sepState0/" ~/.config/qtile/settings/widgets.py
+		qtile cmd-obj -o cmd -f reload_config
+	fi
+
+fi
+
+
+

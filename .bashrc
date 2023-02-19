@@ -17,7 +17,7 @@ alias ll='lsd -l'
 alias cat='bat'
 alias blackcategories="pacman -Sg | grep blackarch | sed 's/blackarch-/ /'"
 alias p='python3'
-alias rmss='rm ~/Screenshots/*'
+alias rmss='rm -f ~/Screenshots/*'
 
 # - Git -
 
@@ -36,6 +36,7 @@ alias godw='cd ~/Downloads'
 alias gosc='cd ~/scripts'
 
 ## -- pr --
+#
 alias prbash='cd ~/workspace/bash'
 alias prrust='cd ~/workspace/rust'
 alias prpython='cd ~/workspace/python'

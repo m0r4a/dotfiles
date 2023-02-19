@@ -133,13 +133,13 @@ shutdown now
 #### My stuff
 
 ``` bash
-sudo pacman -S code pavucontrol obsidian arandr neofetch scrot brightnessctl imv feh xcalib bat lsd unzip python-pip lightdm-webkit2-greeter openssh xdg-utils
+sudo pacman -S code pavucontrol obsidian arandr neofetch scrot brightnessctl imv feh xcalib bat lsd unzip python-pip lightdm-webkit2-greeter openssh xdg-utils libnotify dunst lxappearance qt5ct
 ```
 
 _With yay_
 
 ```bash
-yay -S example 
+yay -S  notification-daemon 
 ```
 
 ## Packages
@@ -172,6 +172,7 @@ yay -S example
 | zsh | new shell intepreter
 | oh-my-zsh | better zsh |
 | starship | prompt editor |
+| dunst | Notification manager? |
 
 ### Without custom config
 
@@ -187,6 +188,8 @@ yay -S example
 | eww | Wacky widgets |
 | bitwarden | Password manager |
 | todoist | Todo-list app |
+| lxappearance | Changing system theme |
+| qt5ct | Same that lxappearance |
 
 
 
@@ -268,7 +271,15 @@ _Note: before you copy the qtile config make sure you have **alacritty** install
 
 Install the hack nerd font from [here](https://www.nerdfonts.com/font-downloads), unzip it and move it to: /usr/share/fonts
 
+
+
 *Note: If you use a different terminal, change it in ~/.config/qtile/settings/keys.py on `my_terminal = alacritty`*
+
+##### Pip dependencies 
+
+```bash
+pip install psutil dbus-next
+```
 
 # Configs in detail
 
@@ -307,58 +318,6 @@ _Note: install xsel for nvim_
 
 ### Starship, prompt editor
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus felis nulla, quis bibendum nulla varius ut. Morbi ligula tellus, tincidunt sed vulputate eget, hendrerit in ex. 
-
-## LightDM 
-
-### ◉ Here's a tutorial about how to install themes for lightdm
-
-#### I'm installing the [**glorious theme**](https://github.com/manilarome/lightdm-webkit2-theme-glorious 'Original Repo') by **Manilarome** 
-
-##### Dependencies:
-
-- lightdm
-- lightdm-webkit2-greeter
-
-1. If you're using systemd make sure that `lightdm.service` or `lightdm-plymouth.service`
-
-```bash
-systemctl --type=service | grep lightdm
-```
-
-2. Install it from the AUR with:
-
-```
-
-3. Set lightdm greeter session to webkit2.
-```
-
-In line 102: `Greeter-session = lightdm-webkit2-greeter`
-
-4. Enable the debug mode and set the webkit theme to glorious
-
-``` bash
-sudo nvim /etc/lightdm/lightdm-webkit2-greeter.conf
-```
-
-In line 15: `debug_mode = true`
-
-In line 21: `webkit_theme = glorious`
-
-_Note: In the commands I'm assuming you have neovim installed_
-
-### ◉ How to add more background images
-
-##### Copy the image into: `/usr/share/backgrounds/`
-
-### ◉ My configs for glorious theme:
-
-Background image = samurai.jpg
-
-Backgrount color = #E1BEE7
-
-Foregorund color = #F3E5F5
-
-Blur strength = 8px
 
 ## Eww
 

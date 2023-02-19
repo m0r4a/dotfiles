@@ -1,3 +1,0 @@
-#!/bin/bash
-
-sudo cp $1 /var/lib/AccountsService/icons/m0r4a.png

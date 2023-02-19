@@ -47,7 +47,7 @@ keys = [
     # Apps 
     Key([mod], "Return", lazy.spawn(my_terminal), desc="Launch terminal"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch FireFox"),
-    Key([mod], "s", lazy.spawn("steam"), desc="Launch steam"),
+    Key([mod], "d", lazy.spawn("discord"), desc="Launch discord"),
     Key([mod], "p", lazy.spawn("bitwarden-desktop"), desc="Launch Bitwarden"),
     Key([mod], "o", lazy.spawn("obsidian"), desc="Launch obsidian"),
     Key([mod], "r", lazy.spawn("todoist"), desc="Launch todoist"),
@@ -80,5 +80,11 @@ keys = [
     Key([], "Scroll_Lock", lazy.spawn("brightnessctl set 10%-")),
 
     # Keyboard layout (qtile widget)
-    Key([mod], "k", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
+    Key([mod, "shift"], "k", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
+
+    # Theme specific
+
+    # Gruvbox
+
+    Key([mod], "F1", lazy.spawn("/home/m0r4a/scripts/Enable-Disable-Systray-Gruvbox")),
 ]

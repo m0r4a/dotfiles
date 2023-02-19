@@ -1,3 +1,0 @@
-#!/bin/bash
-
-cp ~/.config/qtile/settings/.nwwidgets.py ~/.config/qtile/settings/widgets.py

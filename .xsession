@@ -36,7 +36,7 @@ fi
 feh --bg-fill Wallpapers/GruvBox.png &
 # Picom
 picom &
-# Notification mgr
+# Dunst
 dunst &
 # Two screens config (very prone to not work in other devices)
 xrandr --output LVDS-1 --primary --mode 1280x800 --pos 0x0 --rotate normal --output DP-1 --mode 1280x800 --pos 1280x0 --rotate normal
