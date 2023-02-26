@@ -142,6 +142,10 @@ _With yay_
 yay -S  notification-daemon 
 ```
 
+_With cargo_
+
+cargo install toipe
+
 ## Packages
 
 ### With custom config
@@ -211,6 +215,7 @@ yay -S  notification-daemon
 | rustup | compiler for rust |
 | snap | package installer |
 | xdg-utils | manage XDG MIME apps |
+| toipe | typing test |
 
 
 ### Installed programming lang.

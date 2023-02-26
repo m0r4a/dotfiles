@@ -18,6 +18,7 @@ alias cat='bat'
 alias blackcategories="pacman -Sg | grep blackarch | sed 's/blackarch-/ /'"
 alias p='python3'
 alias rmss='rm -f ~/Screenshots/*'
+alias pdf='xdg-open'
 
 # - Git -
 

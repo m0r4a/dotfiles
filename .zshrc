@@ -59,8 +59,8 @@ alias rmss='rm ~/Screenshots/*'
 
 alias v='nvim'
 alias p='python3'
-alias cat='bat'
 alias ls='lsd'
+alias pdf='xdg-open'
 
 # - Git -
 
@@ -81,6 +81,7 @@ alias godsk='cd ~/Desktop'
 alias goh='cd ~'
 alias godw='cd ~/Downloads'
 alias gosc='cd ~/scripts'
+alias sdev='cd ~/workspace/scriptDev'
 
 ## -- pr --
 alias prbash='cd ~/workspace/bash'

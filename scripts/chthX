@@ -1,39 +1,122 @@
 #!/bin/bash
 
-cs="${1,,}"
+th="${1,,}"
+
+# ███████╗██╗   ██╗███╗   ██╗ ██████╗████████╗██╗ ██████╗ ███╗   ██╗███████╗
+# ██╔════╝██║   ██║████╗  ██║██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║██╔════╝
+# █████╗  ██║   ██║██╔██╗ ██║██║        ██║   ██║██║   ██║██╔██╗ ██║███████╗
+# ██╔══╝  ██║   ██║██║╚██╗██║██║        ██║   ██║██║   ██║██║╚██╗██║╚════██║
+# ██║     ╚██████╔╝██║ ╚████║╚██████╗   ██║   ██║╚██████╔╝██║ ╚████║███████║
+# ╚═╝      ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+                                                                          
+
+# Function which gives you a random number betwwen 0 and 1 number lower than the argument
+
+rand () {
+	echo $(shuf -i 0-$(expr $1 - 1) -n1)
+}
+
+# Gets the content of the Wallpapers folder given and sets the BGS as an array of the content
+
+Get-Wallpapers (){
+	BGS=($(ls ~/Wallpapers/$1))
+}
+
+# Function for getting a random item inside a given array
+
+wpPicker (){
+	local -n array=$1
+	BG=${array[$(rand ${#array[@]})]}
+}
+
+# $1=ThemeName $2=FolderOfTheImagesForTheTheme $3="$BarName"
+
+theme(){
+	if [ $th = $1 ]; then
+		feh --bg-fill ~/Wallpapers/$2/$BG &
+		sed -i "s/$OGBar/$3/" ~/.config/qtile/settings/screens.py
+	fi
+}
+
+
+#  ██████╗██╗  ██╗ █████╗ ███╗   ██╗ ██████╗ ███████╗    ████████╗██╗  ██╗███████╗███╗   ███╗███████╗
+# ██╔════╝██║  ██║██╔══██╗████╗  ██║██╔════╝ ██╔════╝    ╚══██╔══╝██║  ██║██╔════╝████╗ ████║██╔════╝
+# ██║     ███████║███████║██╔██╗ ██║██║  ███╗█████╗         ██║   ███████║█████╗  ██╔████╔██║█████╗  
+# ██║     ██╔══██║██╔══██║██║╚██╗██║██║   ██║██╔══╝         ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║██╔══╝  
+# ╚██████╗██║  ██║██║  ██║██║ ╚████║╚██████╔╝███████╗       ██║   ██║  ██║███████╗██║ ╚═╝ ██║███████╗
+#  ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝       ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝
+                                                                                                   
+
+# Searching for the original value of the bar
 
 OGBar=$(sed -n 11p ~/.config/qtile/settings/screens.py)
-FILE=~/.config/qtile/settings/themes/$cs.py
+
+# Setting a var for the path
+
+FILE=~/.config/qtile/settings/themes/$th.py
+
+# Checking if the theme exist, if it does overwrites the widget file with the theme's file
 
 if [ -f "$FILE" ]; then
-	cat ~/.config/qtile/settings/themes/$cs.py > ~/.config/qtile/settings/widgets.py
+	cat ~/.config/qtile/settings/themes/$th.py > ~/.config/qtile/settings/widgets.py
 	echo "Theme changed"
+
+# If the theme doesn't exist, shows the available themes
+
 else 
     echo "The list of available themes are:"
     ls ~/.config/qtile/settings/themes/ | sed -e 's/__pycache__//' -e 's/.py/ /' | grep "\S"
 fi
 
-### Cyberpunk
 
-CPBar='     return bar.Bar(widgets, 25, opacity=1,background="#00000000")'
-
-if [ $cs = "cyberpunk" ]; then
-	feh --bg-fill ~/Wallpapers/city.jpg &
-	sed -i "s/$OGBar/$CPBar/" ~/.config/qtile/settings/screens.py
-fi
+# ████████╗██╗  ██╗███████╗███╗   ███╗███████╗███████╗
+# ╚══██╔══╝██║  ██║██╔════╝████╗ ████║██╔════╝██╔════╝
+#    ██║   ███████║█████╗  ██╔████╔██║█████╗  ███████╗
+#    ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║██╔══╝  ╚════██║
+#    ██║   ██║  ██║███████╗██║ ╚═╝ ██║███████╗███████║
+#    ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝╚══════╝
+                                                    
 
 ### Gruvbox
 
 GBBar='     return bar.Bar(widgets, 30, opacity=1,background="#282120")'
 
-if [ $cs = "gruvbox" ]; then
-	feh --bg-fill ~/Wallpapers/GruvBox.png &
-	sed -i "s/$OGBar/$GBBar/" ~/.config/qtile/settings/screens.py
-fi
+Get-Wallpapers GruvBox
+
+wpPicker BGS
+
+theme "gruvbox" "GruvBox" "$GBBar"
+
+### CyberPunk
+
+CPBar='     return bar.Bar(widgets, 25, opacity=1,background="#00000000")'
+
+Get-Wallpapers CyberPunk
+
+wpPicker BGS
+
+theme cyberpunk CyberPunk "$CPBar"
+
+
+### BNW
+
+BNWBar='     return bar.Bar(widgets, 25, opacity=1,background="#FFFFFF")'
+
+Get-Wallpapers BNW
+
+wpPicker BGS
+
+theme bnw BNW "$BNWBar"
 
 
 
-# Config reload
+#  ██████╗███████╗ ██████╗     ██████╗ ███████╗██╗      ██████╗  █████╗ ██████╗ 
+# ██╔════╝██╔════╝██╔════╝     ██╔══██╗██╔════╝██║     ██╔═══██╗██╔══██╗██╔══██╗
+# ██║     █████╗  ██║  ███╗    ██████╔╝█████╗  ██║     ██║   ██║███████║██║  ██║
+# ██║     ██╔══╝  ██║   ██║    ██╔══██╗██╔══╝  ██║     ██║   ██║██╔══██║██║  ██║
+# ╚██████╗██║     ╚██████╔╝    ██║  ██║███████╗███████╗╚██████╔╝██║  ██║██████╔╝
+#  ╚═════╝╚═╝      ╚═════╝     ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ 
+                                                                              
 
 if [ -f "$FILE" ]; then
 	qtile cmd-obj -o cmd -f reload_config
