@@ -194,6 +194,7 @@ cargo install toipe
 | todoist | Todo-list app |
 | lxappearance | Changing system theme |
 | qt5ct | Same that lxappearance |
+| Apostrophe | MD editor |
 
 
 

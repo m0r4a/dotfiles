@@ -24,6 +24,8 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod], "g", lazy.layout.grow()),
+    Key([mod], "s", lazy.layout.shrink()),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -51,6 +53,7 @@ keys = [
     Key([mod], "p", lazy.spawn("bitwarden-desktop"), desc="Launch Bitwarden"),
     Key([mod], "o", lazy.spawn("obsidian"), desc="Launch obsidian"),
     Key([mod], "r", lazy.spawn("todoist"), desc="Launch todoist"),
+    Key([mod], "a", lazy.spawn("apostrophe"), desc="Launch apostrophe"),
 
     # Rofi
     Key([mod], "space", lazy.spawn("rofi -show run -show-icons"), desc="Launch Rofi"),

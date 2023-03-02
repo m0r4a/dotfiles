@@ -42,7 +42,7 @@ FG3 = "#BDAE93"
 BG4 = "#7C6F64"
 FG4 = "A89984"
 
-BGoff = "#FF0000"
+BGoff = "#282120"
 
 
 def icon(icon, padd):
@@ -168,8 +168,8 @@ primary_widgets = [
             update_interval=1
 
         ),
-        myseparator2(Blue),
-        widget.Systray(background=BGoff, padding=2),
+#Separator substitute
+#Systray substitute
         miniSeparator(),
         myseparator(Yellow),
         miniSeparator(),

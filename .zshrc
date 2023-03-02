@@ -62,6 +62,16 @@ alias p='python3'
 alias ls='lsd'
 alias pdf='xdg-open'
 
+# - Rust -
+
+alias rsc='nvim src/main.rs'
+
+## -- Cargo --
+
+alias cn='cargo new'
+alias cb='cargo build'
+alias cr='cargo run'
+
 # - Git -
 
 alias g='git'
@@ -71,7 +81,8 @@ alias gc='git clone'
 
 # - Edit files -
 
-alias rdm='nvim ~/README.md'
+unalias md
+alias md='apostrophe *.md'
 
 # - Directorios Rapidos -
 

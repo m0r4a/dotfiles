@@ -168,8 +168,8 @@ primary_widgets = [
             update_interval=1
 
         ),
-        myseparator2(Blue),
-        widget.Systray(background=BGoff, padding=2),
+#Separator substitute
+#Systray substitute
         miniSeparator(),
         myseparator(Yellow),
         miniSeparator(),
