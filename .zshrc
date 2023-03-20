@@ -1,7 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/scripts:/snap/bin
 
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -54,6 +53,10 @@ alias lsa='lsd -a'
 alias ll='lsd -l'
 alias blackcategories="pacman -Sg | grep blackarch | sed 's/blackarch-/ /'"
 alias rmss='rm ~/Screenshots/*'
+
+# - Scripts -
+
+alias spt="bash ~/scripts/spt"
 
 # - Shortcuts -
 

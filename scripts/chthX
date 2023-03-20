@@ -13,7 +13,7 @@ th="${1,,}"
 # Function which gives you a random number betwwen 0 and 1 number lower than the argument
 
 rand () {
-	echo $(shuf -i 0-$(expr $1 - 1) -n1)
+	echo $(shuf -i 0-$(( $1 - 1 )) -n1)
 }
 
 # Function for getting an array of the backgrounds in the specified theme's folder, pick one random item
@@ -39,6 +39,12 @@ theme(){
 bar(){
 	echo "     return bar.Bar(widgets, $1, opacity=$2,background='$3')"
 }
+
+if [ $th = "random" ] || [ $th = "rand" ]; then
+	Themes=($(ls ~/.config/qtile/settings/themes/ | sed -e 's/__pycache__//' -e 's/.py/ /' | grep "\S"))
+	th=${Themes[$(rand ${#Themes[@]})]}
+fi
+
 
 
 
@@ -94,11 +100,11 @@ CPBar=$(bar 25 1 "00000000")
 theme cyberpunk "$CPBar"
 
 
-### BNW
+### Focus
 
-BNWBar=$(bar 25 1 "FFFFFF")
+FocusBar=$(bar 25 1 "00000000")
 
-theme bnw "$BNWBar"
+theme focus "$FocusBar"
 
 
 

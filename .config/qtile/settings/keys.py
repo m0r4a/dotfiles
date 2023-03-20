@@ -52,7 +52,7 @@ keys = [
     Key([mod], "d", lazy.spawn("discord"), desc="Launch discord"),
     Key([mod], "p", lazy.spawn("bitwarden-desktop"), desc="Launch Bitwarden"),
     Key([mod], "o", lazy.spawn("obsidian"), desc="Launch obsidian"),
-    Key([mod], "r", lazy.spawn("todoist"), desc="Launch todoist"),
+    Key([mod], "t", lazy.spawn("todoist"), desc="Launch todoist"),
     Key([mod], "a", lazy.spawn("apostrophe"), desc="Launch apostrophe"),
 
     # Rofi
@@ -83,7 +83,7 @@ keys = [
     Key([], "Scroll_Lock", lazy.spawn("brightnessctl set 10%-")),
 
     # Keyboard layout (qtile widget)
-    Key([mod, "shift"], "k", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
+    Key([], "Menu", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
 
     # Theme specific
 

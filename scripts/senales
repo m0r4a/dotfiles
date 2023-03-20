@@ -1,5 +1,0 @@
-#!/bin/bash
-
-mv $1 $2
-
-mv $2 ~/obsidian/Facultad/Señales\ de\ Transmisión

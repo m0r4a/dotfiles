@@ -217,6 +217,8 @@ cargo install toipe
 | snap | package installer |
 | xdg-utils | manage XDG MIME apps |
 | toipe | typing test |
+| spotify-tui | spotify on terminal |
+| spotifyd | spotify client |
 
 
 ### Installed programming lang.
