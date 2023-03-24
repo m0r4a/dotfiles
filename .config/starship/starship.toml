@@ -7,17 +7,17 @@ format = """
 $os\
 [ ](#592693)\
 
-[](#458588)\
+[](#560808)\
 $username\
-[](bg:#b16286 fg:#458588)\
+[](bg:#6F0808 fg:#560808)\
 
 $directory\
-[](fg:#b16286 bg:#98971a)\
+[](fg:#6F0808 bg:#880808)\
 
 $rust\
 $python\
-[](fg:#98971a)
-[ > ](fg:#98971a)\
+[](fg:#880808)
+[ > ](fg:#880808)\
 """
 
 # Disable the blank line at the start of the prompt
@@ -27,7 +27,7 @@ $python\
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:#458588 fg:#E0E0E0"
+style_user = "bg:#560808 fg:#E0E0E0"
 style_root = "bg:#458488 fg:#ff0000"
 format = '[$user ]($style)'
 disabled = false
@@ -43,7 +43,8 @@ disabled = false
 Arch = " "
 
 [directory]
-style = "bg:#b16286 fg:#E0E0E0"
+style = "bg:#6F0808 fg:#E0E0E0"
+
 format = "[ $path ]($style)"
 truncation_length = 2
 truncation_symbol = "…/"
@@ -76,11 +77,11 @@ format = '[$duration](bold yellow)'
 
 [rust]
 symbol = ""
-style = "bg:#98971a"
+style = "bg:#880808"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = ""
-style = "bg:#98971a"
+style = "bg:#880808"
 format = '[ $symbol ($version) ]($style)'
 

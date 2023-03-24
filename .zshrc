@@ -4,6 +4,10 @@ PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/ve
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Thing for lunarvim
+
+export PATH=/home/m0r4a/.local/bin:$PATH
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -60,7 +64,7 @@ alias spt="bash ~/scripts/spt"
 
 # - Shortcuts -
 
-alias v='nvim'
+alias v='lvim'
 alias p='python3'
 alias ls='lsd'
 alias pdf='xdg-open'

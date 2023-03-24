@@ -3,7 +3,7 @@ from libqtile.config import Match
 
 
 layout_conf = {
-    'border_focus': '#ffa3d9',
+    'border_focus': '#EE4B2B',
     'border_width': 1,
     'margin': 3
 }
@@ -34,5 +34,5 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
     ],
-    border_focus='#ffa3d9'
+    border_focus='#EE4B2B'
 )
