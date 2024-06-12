@@ -1,0 +1,33 @@
+{
+
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 1,
+"fixed-center": true,
+"ipc": true,
+"margin-left": 10,
+"margin-right": 10,
+
+
+"modules-left": [
+	"battery", 
+	"wireplumber"
+],
+  
+
+
+"modules-center": [
+	"hyprland/workspaces"
+], 
+
+
+"modules-right": [
+	"tray", 
+	"clock",
+]
+
+}
