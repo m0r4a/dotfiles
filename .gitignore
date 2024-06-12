@@ -10,6 +10,7 @@
 ## My scripts directory
 !scripts/
 !scripts/*
+scripts/spotifyd_password
 
 ## Wallpapers
 !Wallpapers/
@@ -41,3 +42,7 @@
 ## Neovim
 !.config/nvim/
 !.config/nvim/init.lua
+
+## Spotifyd
+!.config/spotifyd/
+!.config/spotifyd/*
