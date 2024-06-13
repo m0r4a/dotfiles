@@ -1,0 +1,69 @@
+# - Commands -
+
+alias off='shutdown now'
+alias blackcategories="pacman -Sg | grep blackarch | sed 's/blackarch-/ /'"
+#alias rmss='rm ~/Screenshots/*'
+
+
+# - Scripts -
+alias lsa='lsd -a'
+alias ll='lsd -l'
+alias cat='bat'
+alias grep='rg'
+
+
+# - Shortcuts -
+
+alias v='nvim'
+alias vim='nvim'
+alias p='python3'
+alias ls='lsd'
+
+# - Electron apps 
+alias discord='webcord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto & disown'
+
+# - Rust -
+
+#alias rsc='nvim src/main.rs'
+
+## -- Cargo --
+
+#alias cn='cargo new'
+#alias cb='cargo build'
+#alias cr='cargo run'
+
+# - Git -
+
+alias g='git'
+alias ga='git add'
+alias gs='git status'
+alias gc='git clone'
+
+# - Edit files -
+
+alias md='bash ~/scripts/apostrophe'
+
+# - Quick directories -
+
+## -- GitHub repos --
+alias csp='cd ~/workspace/Courses/CS50/Programming_with_Python'
+
+## -- go --
+
+alias godsk='cd ~/Desktop'
+alias goh='cd ~'
+alias godw='cd ~/Downloads'
+alias gosc='cd ~/scripts'
+#alias sdev='cd ~/workspace/scriptDev'
+
+## -- pr --
+alias prbash='cd ~/workspace/bash'
+alias prrust='cd ~/workspace/rust'
+alias prpython='cd ~/workspace/python'
+
+# - Configs -
+
+alias cfgbash='nvim ~/.bashrc'
+alias cfghypr='nvim ~/.config/hypr/hyprland.conf'
+alias cfgzsh='nvim ~/.zshrc'
+alias cfgstarship='nvim ~/.config/starship/starship.toml'

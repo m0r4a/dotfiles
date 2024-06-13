@@ -4,6 +4,7 @@
 # Allowing .something files
 !.gitignore
 !.zshrc
+!.zsh_aliases
 
 # Specific directories
 
