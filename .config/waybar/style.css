@@ -58,6 +58,10 @@
        border-radius: 10px;
    }
 
+   #language {
+       color: #cba7f7;
+    }
+
    #clock,
    #battery,
    #cpu,

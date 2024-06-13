@@ -14,10 +14,10 @@
 
 
 "modules-left": [
-	"battery", 
-	"wireplumber"
+	"wireplumber",
+	"hyprland/language"
 ],
-  
+
 
 
 "modules-center": [
@@ -27,6 +27,7 @@
 
 "modules-right": [
 	"tray", 
+	"battery", 
 	"clock",
 ]
 
