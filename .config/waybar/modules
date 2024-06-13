@@ -1,4 +1,36 @@
 {
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": " Mute",
+    "on-click": "~/.config/hypr/scripts/volume --toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "~/.config/hypr/scripts/volume --inc",
+    "on-scroll-down": "~/.config/hypr/scripts/volume --dec",
+    "format-icons": ["", "", " "],
+  },
+
+  "battery": {
+    "interval": 60,
+    "align": 0,
+    "rotate": 0,
+    //"bat": "BAT1",
+    //"adapter": "ACAD",
+    "full-at": 100,
+    "design-capacity": false,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15},
+    "format": "{icon}  {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-full": "{icon}  Full",
+    //"format-good": "",
+    "format-alt": "{icon} {time}",
+    "format-icons": ["", "", "", "", ""],
+    "format-time": "{H}h {M}min",
+    "tooltip": true,
+  },
 
   "hyprland/workspaces": {
     //"format": "{name}",
@@ -33,29 +65,11 @@
     "on-scroll-down": "hyprctl dispatch workspace e-1",
   },
 
-  "battery": {
-    "interval": 60,
-    "align": 0,
-    "rotate": 0,
-    //"bat": "BAT1",
-    //"adapter": "ACAD",
-    "full-at": 100,
-    "design-capacity": false,
-    "states": {
-      "good": 95,
-      "warning": 30,
-      "critical": 15},
-    "format": "{icon}  {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-full": "{icon}  Full",
-    //"format-good": "",
-    "format-alt": "{icon} {time}",
-    "format-icons": ["", "", "", "", ""],
-    "format-time": "{H}h {M}min",
-    "tooltip": true,
+  "tray": {
+    "icon-size": 16,
+       "spacing": 8,
   },
-    
+
   "clock": {
     //"format": "{:%I:%M %p}",
     "format": " {:%H:%M}",
@@ -84,21 +98,6 @@
       "on-scroll-down": "shift_down"
                 }
   },
-    
-  "wireplumber": {
-    "format": "{icon} {volume} %",
-    "format-muted": " Mute",
-    "on-click": "~/.config/hypr/scripts/volume --toggle",
-    "on-click-right": "pavucontrol",
-    "on-scroll-up": "~/.config/hypr/scripts/volume --inc",
-    "on-scroll-down": "~/.config/hypr/scripts/volume --dec",
-    "format-icons": ["", "", ""],
-  },
-    
-  "tray": {
-    "icon-size": 16,
-       "spacing": 8,
-  },
+
+
 }
-     
-  
