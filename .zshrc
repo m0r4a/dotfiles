@@ -3,6 +3,11 @@ PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/ve
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Export var to make QT apps run in wayland
+export QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough
+export QT_ENABLE_HIGHDPI_SCALING=1
+export QT_SCALE_FACTOR=1
+
 # Importing my aliases
 source ~/.zsh_aliases
 
