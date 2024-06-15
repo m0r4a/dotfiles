@@ -16,6 +16,7 @@ alias grep='rg'
 
 alias v='nvim'
 alias vim='nvim'
+alias c='wl-copy'
 alias p='python3'
 alias ls='lsd'
 
