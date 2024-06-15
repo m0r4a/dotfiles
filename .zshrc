@@ -1,20 +1,10 @@
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/scripts:/snap/bin
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Export var to make QT apps run in wayland
-export QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough
-export QT_ENABLE_HIGHDPI_SCALING=1
-export QT_SCALE_FACTOR=1
-
 # Importing my aliases
 source ~/.zsh_aliases
 
-# This are the variables for the GTK darkmode 
-export GTK_THEME=Adwaita:dark
-export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export QT_STYLE_OVERRIDE=Adwaita-Dark
+# Importing my environment variables
+source ~/.zsh_env
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -49,8 +39,6 @@ source $ZSH/oh-my-zsh.sh
 
 # ------ User configuration ------
 
-# Language environment
-export LANG=en_US.UTF-8
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -81,8 +69,3 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Starship prompt editor
 
 eval "$(starship init zsh)"
-
-# Changing the default toml location for Starship
-
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-

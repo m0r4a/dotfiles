@@ -5,6 +5,7 @@
 !.gitignore
 !.zshrc
 !.zsh_aliases
+!.zsh_env
 
 # Specific directories
 

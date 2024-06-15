@@ -1,0 +1,10 @@
+#!/bin/bash
+
+disk=$(lsblk -r | \grep 1.7T | awk '{print $1}') 
+
+if [ "$1" == "-u" ]; then
+    sudo umount ~/nvme
+else
+    sudo mount /dev/$disk ~/nvme
+fi
+
