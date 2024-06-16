@@ -1,0 +1,17 @@
+graphics_mode=$(supergfxctl -g)
+
+if [ "$graphics_mode" = "AsusMuxDgpu" ]; then
+    # Hypr
+    sed -i 's/eDP-2/eDP-1/g' ~/.config/hypr/hyprland.conf
+    sed -i 's/eDP-2/eDP-1/g' ~/.config/hypr/hyprpaper.conf
+
+    # Waybar
+    sed -i 's/modules_other/modules_mux/g' ~/.config/waybar/config.jsonc
+else
+    # Hypr
+    sed -i 's/eDP-1/eDP-2/g' ~/.config/hypr/hyprland.conf
+    sed -i 's/eDP-1/eDP-2/g' ~/.config/hypr/hyprpaper.conf
+
+    # Waybar
+    sed -i 's/modules_mux/modules_other/g' ~/.config/waybar/config.jsonc
+fi
