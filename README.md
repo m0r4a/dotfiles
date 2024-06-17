@@ -21,6 +21,14 @@
     <img src="resources/desktop.png" alt="A desktop image"/>
 </p>
 
+### Display manager
+
+*Theres nothing here but looks funny to add a gallery section for only one image.*
+
+### Neovim
+
+*Same as above.*
+
 ## Repo structure 
 
 <p align="center">
