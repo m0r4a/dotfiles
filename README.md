@@ -12,7 +12,7 @@ This repo uses `stow` to manage the dotfiles.
 
 ### Modules 
 
-The repo is meant to be used by modules that are stowed in the home directory.
+The repo is meant to be used as a collection of modules so the "easier" way to use it is to just stow the whole module.
 
 To stow a module, use the following command:
 
@@ -37,7 +37,7 @@ cd individual_packages
 stow -t ~/ <package>
 ```
 
-To stow the `nvim` package:
+For example to stow the `nvim` package:
 
 ```bash
 cd individual_packages
