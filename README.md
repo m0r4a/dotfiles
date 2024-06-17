@@ -3,7 +3,7 @@
 ## Repo structure 
 
 <p align="center">
-    <img src="resources/structure.svg" alt="Structure diagram"/>
+    <img src="resources/structure.png" alt="Structure diagram"/>
 </p>
 
 ## Stow
