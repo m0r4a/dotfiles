@@ -20,6 +20,10 @@ alias c='wl-copy'
 alias p='python3'
 alias ls='lsd'
 
+# - Docker -
+alias dc='docker-compose'
+alias doc-ip='docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"'
+
 # - Electron apps 
 alias discord='webcord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto & disown'
 

@@ -15,6 +15,19 @@
     "format-es": "es",
   },
 
+  "network": {
+    "interface": "enp109s0",
+    "format": "{ifname}",
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "󰌢 {ipaddr}",
+    "format-disconnected": "", //An empty format will hide the module.
+    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+
   "hyprland/workspaces": {
     //"format": "{name}",
     //"format": "{name}: {icon}",
