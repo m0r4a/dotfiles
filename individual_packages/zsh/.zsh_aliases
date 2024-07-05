@@ -19,13 +19,15 @@ alias vim='nvim'
 alias c='wl-copy'
 alias p='python3'
 alias ls='lsd'
+alias bksv='ssh m0r4a_low@192.168.1.150 -p 22'
 
 # - Docker -
 alias dc='docker-compose'
 alias doc-ip='docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"'
 
 # - Electron apps 
-alias discord='webcord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto & disown'
+alias vesktop='vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland'
+alias spotify='spotify --enable-features=UseOzonePlatform --ozone-platform=wayland'
 
 # - Rust -
 
@@ -60,11 +62,6 @@ alias goh='cd ~'
 alias godw='cd ~/Downloads'
 alias gosc='cd ~/scripts'
 #alias sdev='cd ~/workspace/scriptDev'
-
-## -- pr --
-alias prbash='cd ~/workspace/bash'
-alias prrust='cd ~/workspace/rust'
-alias prpython='cd ~/workspace/python'
 
 # - Configs -
 
