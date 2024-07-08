@@ -35,7 +35,7 @@
     icon_position = left
     min_icon_size = 0
     max_icon_size = 32
-    icon_path = /usr/share/icons/Paper/16x16/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/16x16/apps/
+    icon_path = /usr/share/icons/Paper/16x16/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/16x16/apps/:/home/m0r4a/logos/dunst_icons
     sticky_history = yes
     history_length = 20
     always_run_script = true
@@ -64,3 +64,13 @@
     timeout = 0
     override_pause_level = 60
     default_icon = /usr/share/icons/Paper/16x16/status/dialog-warning.png
+
+[nchat]
+    appname = "nchat"
+    background = "#59CE72"
+    icon = "nchat"
+
+[spotify]
+    appname = "Spotify"
+    background = "#FF0000"
+    icon = "spotify"

@@ -6,6 +6,9 @@ source ~/.zsh_aliases
 # Importing my environment variables
 source ~/.zsh_env
 
+# Fzf 
+source <(fzf --zsh)
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME

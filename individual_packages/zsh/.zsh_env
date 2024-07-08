@@ -19,4 +19,3 @@ export LANG=en_US.UTF-8
 
 # Changing the default toml location for Starship
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-
