@@ -20,6 +20,7 @@ alias c='wl-copy'
 alias p='python3'
 alias ls='lsd'
 alias bksv='ssh m0r4a_low@192.168.1.150 -p 22'
+alias mirror_refresh='sudo reflector --verbose --latest 15 --sort rate --save /etc/pacman.d/mirrorlist'
 
 # - Docker -
 alias dc='docker-compose'
@@ -53,7 +54,7 @@ alias md='bash ~/scripts/apostrophe'
 # - Quick directories -
 
 ## -- GitHub repos --
-alias csp='cd ~/workspace/Courses/CS50/Programming_with_Python'
+alias cs='cd ~/workspace/CS50P/'
 
 ## -- go --
 
