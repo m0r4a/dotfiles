@@ -1,0 +1,2 @@
+exercism download -e $1 -t go
+mv ~/workspace/go/$1 ~/workspace/exercism-go/

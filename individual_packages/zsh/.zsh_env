@@ -8,6 +8,7 @@ export OLLAMA_MODELS="$HOME/nvme/ollama_models"
 export QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough
 export QT_ENABLE_HIGHDPI_SCALING=1
 export QT_SCALE_FACTOR=1
+export QT_QPA_PLATFORM=xcb
 
 # This are the variables for the GTK darkmode 
 export GTK_THEME=Adwaita:dark
@@ -19,3 +20,10 @@ export LANG=en_US.UTF-8
 
 # Changing the default toml location for Starship
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+# Sonarqube
+export SONAR_SCANNER_HOME="/opt/sonar-scanner"
+export PATH="${SONAR_SCANNER_HOME}/bin:${PATH}"
+
+# Go packages 
+export PATH="$HOME/go/bin:$PATH"

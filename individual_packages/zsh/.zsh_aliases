@@ -18,8 +18,10 @@ alias v='nvim'
 alias vim='nvim'
 alias c='wl-copy'
 alias p='python3'
+alias obs='flatpak run com.obsproject.Studio --enable-features=UseOzonePlatform --ozone-platform=wayland & disown'
 alias ls='lsd'
-alias bksv='ssh m0r4a_low@192.168.1.150 -p 22'
+alias exe='exercism'
+alias bksv='ssh m0r4a_low@192.168.1.69 -p 22'
 alias mirror_refresh='sudo reflector --verbose --latest 15 --sort rate --save /etc/pacman.d/mirrorlist'
 
 # - Docker -
@@ -54,7 +56,6 @@ alias md='bash ~/scripts/apostrophe'
 # - Quick directories -
 
 ## -- GitHub repos --
-alias cs='cd ~/workspace/CS50P/'
 
 ## -- go --
 

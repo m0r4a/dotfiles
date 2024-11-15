@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Directorio de origen
+input_dir="."
+# Directorio de destino
+output_dir="$HOME/lolo"
+
+# Crear el directorio de destino si no existe
+mkdir -p "$output_dir"
+
+# Bucle para cada archivo del episodio
+for i in $(seq -w 1 21); do
+    input_file="${input_dir}/Gravity Falls ( 2012-2016) S02E${i}.mkv"
+    output_file="${output_dir}/Gravity Falls (2012) S02E${i}.mp4"
+
+    # Verifica si el archivo de entrada existe
+    if [[ -f "$input_file" ]]; then
+        echo "Convirtiendo $input_file a $output_file ..."
+
+        # Convertir el archivo manteniendo el video y cambiando el audio a AAC
+        ffmpeg -i "$input_file" -c:v copy -c:a aac -b:a 160k "$output_file"
+
+        echo "Archivo convertido y guardado en $output_file"
+    else
+        echo "Archivo $input_file no encontrado, omitiendo..."
+    fi
+done
