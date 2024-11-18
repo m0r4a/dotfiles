@@ -1,112 +1,129 @@
-# Dotfiles repo 
+# Stow Package Manager for Dotfiles
 
-## Table of contents
+This repository contains an interactive terminal-based package manager built to handle **dotfiles** using [GNU Stow](https://www.gnu.org/software/stow/). This tool streamlines the process of enabling and disabling configurations through symlinks, making it easier to manage your setup.
 
-- [Gallery](#gallery)
-  - [Desktop](#desktop)
-- [Repo structure](#repo-structure)
-- [Modules](#modules)
-  - [Essential](#essential-packages-that-i-need-no-matter-which-system-im-using)
-  - [Hyprland](#hyprland-config-files-related-to-hyprand)
-  - [Pretty](#pretty-packages-that-make-my-system-look-pretty)
-  - [Apps](#apps-miscellaneous-apps-that-i-use)
-  - [Desktop](#desktop-this-is-kinda-a-backup-module-for-desktop-related-files)
-- [Stow](#stow)
+## Table of Contents
 
-## Gallery
+- [Introduction](#introduction)
+- [Features](#features)
+- [How to Use](#how-to-use)
+- [Available Commands](#available-commands)
+- [How It Works](#how-it-works)
+- [Example Directory Structure](#example-directory-structure)
+- [Contributing](#contributing)
 
-### Desktop
+## Introduction
 
-<p align="center">
-    <img src="resources/desktop.png" alt="A desktop image"/>
-</p>
+This tool is designed for managing dotfiles in a structured way using GNU Stow. By leveraging symlinks, it allows you to enable and disable specific configurations in your home directory or other designated locations. Whether you prefer an interactive interface or quick command-line options, this manager has you covered.
 
-### Display manager
+## Features
 
-*Theres nothing here but looks funny to add a gallery section for only one image.*
+- Interactive mode for managing packages with an easy-to-use terminal interface.
+- Command-line mode for quick actions like enabling or disabling specific packages.
+- Compatibility with multiple Linux distributions, macOS, and more.
+- Automatically detects enabled and disabled packages.
+- Simple feedback with clear output messages for success or errors.
 
-### Neovim
+## How to Use
 
-*Same as above.*
+1. Clone this repository into a location of your choice:
+   ```
+   git clone https://github.com/username/dotfiles.git ~/dotfiles
+   ```
 
-## Repo structure 
+2. Navigate to the directory:
+   ```
+   cd ~/dotfiles
+   ```
 
-<p align="center">
-    <img src="resources/structure.png" alt="Structure diagram"/>
-</p>
+3. Ensure GNU Stow is installed. If not, install it using your package manager:
+   ```
+   sudo apt install stow      # For Debian-based systems
+   sudo pacman -S stow        # For Arch-based systems
+   brew install stow          # For macOS
+   ```
 
-## Modules
+4. Organize your dotfiles under a `packages/` directory:
+   ```
+   dotfiles/
+   ├── packages/
+   │   ├── nvim/
+   │   │   ├── init.vim
+   │   ├── zsh/
+   │   │   ├── .zshrc
+   ```
 
-### Essential: Packages that I need no matter which system I'm using.
+5. Run the package manager in interactive mode:
+   ```
+   python3 manager.py
+   ```
 
-- `zsh`: Zsh configuration files.
-  - `.zshrc`: Zsh configuration file.
-  - `.zsh_aliases`: Zsh aliases file.
-  - `.zsh_env`: Zsh environment variables file.
-- `nvim`: Neovim configuration files.
+6. Alternatively, use command-line options for specific tasks (see [Available Commands](#available-commands)).
 
-### Hyprland: Config files related to Hyprand
+## Available Commands
 
-- `hypr`: Hypr configuration files.
-  - `hyprland.conf`: Hypr configuration file.
-  - `hyprpaper.conf`: Hypr wallpaper configuration file.
-- `waybar`: Waybar configuration files.
-  - `config.jsonc`: Waybar configuration file.
-  - `style.css`: Waybar style file.
-  - `modules_mux/modules_other`: Waybar modules files.
+The following options are available for command-line usage:
 
-### Pretty: Packages that make my system look pretty.
-
-- `starship`: Starship configuration files.
-  - `starship.toml`: Starship configuration file.
-- `fastfetch`: Fastfetch configuration files.
-  - `config.jsonc`: Fastfetch configuration file.
-  - `darkrai.png`: Fastfetch logo file.
-
-### Apps: Miscellaneous apps that I use.
-
-- `kitty`: Kitty configuration files.
-  - `kitty.conf`: Kitty configuration file.
-
-### Desktop: This is kinda a backup module for desktop related files.
-
-- `scripts`: Scripts.
-- `Wallpapers`: Wallpapers.
-
-## Stow
-
-This repo uses `stow` to manage the dotfiles.
-
-### Modules 
-
-The repo is meant to be used as a collection of modules so the "easier" way to use it is to just stow the whole module.
-
-To stow a module, use the following command:
-
-```bash
-stow <module>
+```
+-i, --install PACKAGE         Enable one or more packages (e.g., nvim, zsh).
+-r, --remove PACKAGE          Disable one or more packages.
+-le, --list-enabled           List all currently enabled packages.
+-ld, --list-disabled          List all currently disabled packages.
+-la, --list-all               List all available packages.
 ```
 
-For example to stow the `essential` module:
+Examples:
+```
+# Enable configurations for nvim and zsh
+python3 manager.py -i nvim zsh
 
-```bash
-stow essential_module
+# Disable the nvim configuration
+python3 manager.py -r nvim
+
+# List all enabled packages
+python3 manager.py -le
+
+# List all disabled packages
+python3 manager.py -ld
 ```
 
-### Individual packages
+## How It Works
 
-The repo was designed to be used by modules, but you can also stow individual packages since the modules are essentially just symbolic links to the individual packages.
+The tool is built around GNU Stow's functionality:
 
-To stow an individual package, use the following command:
+1. **Packages Directory:** All packages are stored in a `packages/` directory. Each package is a subdirectory containing the dotfiles or configuration files to symlink.
+2. **Symlinks:** When you enable a package, GNU Stow creates symlinks in `$HOME` or `$HOME/.config`, depending on the file structure.
+3. **Interactive Menu:** In interactive mode, you can use the arrow keys to navigate and toggle packages.
+4. **Direct Commands:** Command-line options allow you to skip the interactive interface for quick actions.
 
-```bash
-cd individual_packages
-stow -t ~/ <package>
+## Example Directory Structure
+
+The `packages/` directory should have a structure similar to this:
+```
+dotfiles/
+├── packages/
+│   ├── nvim/
+│   │   ├── init.vim
+│   │   ├── other-config.vim
+│   ├── zsh/
+│   │   ├── .zshrc
+│   ├── tmux/
+│   │   ├── .tmux.conf
 ```
 
-For example to stow the `nvim` package:
+When you enable the `nvim` package, the manager creates symlinks for `init.vim` and other files in the appropriate locations in your home directory.
 
-```bash
-cd individual_packages
-stow -t ~/ nvim
-```
+## Contributing
+
+Contributions are welcome! If you have ideas or improvements for this package manager, feel free to:
+
+1. Fork the repository.
+2. Create a new branch with your changes:
+   ```
+   git checkout -b feature/my-feature
+   ```
+3. Submit a pull request with a detailed explanation of your changes.
+
+---
+
+If you have any questions or run into issues, feel free to open an issue in the repository. Happy dotfile management!
