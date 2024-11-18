@@ -1,1 +1,0 @@
-../individual_packages/zsh/.zshrc

@@ -1,0 +1,126 @@
+{
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": " Mute",
+    "on-click": "~/.config/hypr/scripts/volume --toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "~/.config/hypr/scripts/volume --inc",
+    "on-scroll-down": "~/.config/hypr/scripts/volume --dec",
+    "format-icons": ["", "", " "],
+  },
+
+  "network": {
+    "interface": "wlan0",
+    "format": "{ifname}",
+    "format-wifi": "󰌢 {ipaddr}",
+    "format-ethernet": "󰌢 {ipaddr}",
+    "format-disconnected": "", //An empty format will hide the module.
+    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+    "tooltip-format-wifi": " {ifname} ({signalStrength}%)   ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+
+  "hyprland/language": {
+    "format": "󰊿 {}",
+    "format-en": "us",
+    "format-es": "es",
+  },
+
+  "hyprland/workspaces": {
+    //"format": "{name}",
+    //"format": "{name}: {icon}",
+    "format": "{icon}",
+    "show-special": false,
+    "on-click": "activate",
+    "all-outputs": false,
+    "sort-by-number": true,
+      "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "󰣇",
+      "5": "",
+      "6": "",
+      "7": "",
+
+      "8": "",
+      "9": "",
+      "10": "󰓇",
+      "11": "󰣇",
+      "12": "󰭹",
+      "13": "󰕧",
+      "14": "",
+      "focused": "",
+      "default": "",
+    },
+
+    "persistent-workspaces":{
+    	"HDMI-A-1": [ 1, 2, 3, 4, 5, 6, 7 ],
+    	"eDP-1": [ 8, 9, 10, 11, 12],
+    },
+
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+  },
+
+  "tray": {
+    "icon-size": 16,
+       "spacing": 8,
+  },
+
+  "battery": {
+    "interval": 60,
+    "align": 0,
+    "rotate": 0,
+    //"bat": "BAT1",
+    //"adapter": "ACAD",
+    "full-at": 100,
+    "design-capacity": false,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15},
+    "format": "{icon}  {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-full": "{icon}  Full",
+    //"format-good": "",
+    "format-alt": "{icon} {time}",
+    "format-icons": ["", "", "", "", ""],
+    "format-time": "{H}h {M}min",
+    "tooltip": true,
+  },
+
+  "clock": {
+    //"format": "{:%I:%M %p}",
+    "format": " {:%H:%M}",
+    //"format-alt": " {:%I:%M %p   %Y, %d %B, %A}",
+    "format-alt": " {:%H:%M   %Y, %d %B, %A}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode"          : "year",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "on-click-right": "mode",
+      "format": {
+      "months":     "<span color='#ffead3'><b>{}</b></span>",
+      "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+      "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+      "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+      "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                }
+  },
+    "actions":  {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+                }
+  },
+
+
+}

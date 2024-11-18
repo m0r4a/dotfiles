@@ -1,0 +1,21 @@
+#!/bin/bash
+
+source ~/.cache/wal/colors.sh
+
+# active_monitor="$(hyprctl monitors | awk '/^Monitor /{monitor=$2} /focused: yes/ && monitor{print monitor; exit}')"
+
+hyprctl hyprpaper preload "$wallpaper"
+hyprctl hyprpaper wallpaper "eDP-1, $wallpaper"
+hyprctl hyprpaper wallpaper "HDMI-A-1, $wallpaper"
+
+config_file="$HOME/.config/hypr/hyprpaper.conf"
+
+cat > "$config_file" << EOF
+preload = $wallpaper
+wallpaper = eDP-1, $wallpaper
+wallpaper = HDMI-A-1, $wallpaper
+# ipc = off
+EOF
+
+killall waybar
+waybar

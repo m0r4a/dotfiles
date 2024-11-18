@@ -1,0 +1,86 @@
+format = """
+
+$os\
+[ ](#592693)\
+
+[]({color2})\
+$username\
+[](bg:{color5} fg:{color2})\
+
+$directory\
+[](fg:{color5} bg:{color13})\
+
+$rust\
+$python\
+
+[](fg:{color13})
+$cmd_duration\
+
+[ > ](fg:{color13})\
+"""
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+# You can also replace your username with a neat symbol like   or disable this
+# and use the os module below
+[username]
+show_always = true
+style_user = "bg:{color2} fg:#E0E0E0"
+style_root = "bg:#458488 fg:#ff0000"
+format = '[$user ]($style)'
+disabled = false
+
+# An alternative to the username module which displays a symbol that
+# represents the current operating system
+[os]
+style = ""
+disabled = false 
+
+[os.symbols]
+
+Arch = " "
+
+[directory]
+style = "bg:{color5} fg:#E0E0E0"
+
+format = "[ $path ]($style)"
+truncation_length = 2
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Downloads" = " "
+"scripts" = "󰘦"
+"Wallpapers" = ""
+".config" = ""
+"qtile" = ""
+"workspace/python" = ""
+"workspace/bash" = ""
+"learning" = ""
+"rust" = ""
+"workspace" = ""
+
+
+[git_branch]
+symbol = ""
+style = "bg:#FCA17D"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#FCA17D"
+format = '[$all_status$ahead_behind ]($style)'
+
+[cmd_duration]
+min_time = 500
+format = '[$duration](bold yellow)'
+
+[rust]
+symbol = ""
+style = "bg:{color13}"
+format = '[ $symbol ($version) ]($style)'
+
+[python]
+symbol = ""
+style = "bg:{color13}"
+format = '[ $symbol ($version) ]($style)'
+
