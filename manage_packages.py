@@ -119,19 +119,23 @@ class TerminalUI:
     @staticmethod
     def get_key() -> str:
         """
-        Read a single keypress without requiring Enter.
+        Read a single keypress or an escape sequence without requiring Enter.
 
         Returns:
-            The pressed key as a string
+            The pressed key or escape sequence as a string
         """
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
+
         try:
             tty.setraw(fd)
             ch = sys.stdin.read(1)
+            if ch == '\x1b':
+                ch += sys.stdin.read(2)
+            return ch
+
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-        return ch
 
     @staticmethod
     def draw_menu(items: List[Tuple[str, bool]], active: int) -> None:
@@ -151,7 +155,7 @@ class TerminalUI:
             print(f"{cursor}{prefix} {item}")
 
         print("\nControls:")
-        print("↑/k: Up | ↓/j: Down | Space: Toggle | Enter: Confirm | q: Quit")
+        print("↑/k/n: Up | ↓/j/p: Down | Space: Toggle | Enter: Confirm | q: Quit")
 
 
 class PackageMenu:
