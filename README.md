@@ -1,6 +1,6 @@
-# Stow Package Manager for Dotfiles
+# Dotfiles Repository with Integrated Package Manager
 
-This repository contains an interactive terminal-based package manager built to handle **dotfiles** using [GNU Stow](https://www.gnu.org/software/stow/). This tool streamlines the process of enabling and disabling configurations through symlinks, making it easier to manage your setup.
+This repository contains my **dotfiles**, organized for efficient management using an integrated package manager built around [GNU Stow](https://www.gnu.org/software/stow/). This setup simplifies the process of enabling and disabling configurations using symlinks, making it easier to manage and switch between setups.
 
 ## Table of Contents
 
@@ -14,19 +14,19 @@ This repository contains an interactive terminal-based package manager built to 
 
 ## Introduction
 
-This tool is designed for managing dotfiles in a structured way using GNU Stow. By leveraging symlinks, it allows you to enable and disable specific configurations in your home directory or other designated locations. Whether you prefer an interactive interface or quick command-line options, this manager has you covered.
+This repository houses my personal dotfiles for tools like Neovim, Hyprland, Zsh, and others. By leveraging an integrated package manager, you can quickly enable or disable these configurations, ensuring a seamless experience across systems. This approach provides flexibility, whether you prefer an interactive terminal interface or command-line efficiency.
 
 ## Features
 
-- Interactive mode for managing packages with an easy-to-use terminal interface.
-- Command-line mode for quick actions like enabling or disabling specific packages.
-- Compatibility with multiple Linux distributions, macOS, and more.
+- Centralized storage for dotfiles with a consistent structure.
+- Integrated package manager for managing configurations interactively or via the command line.
+- Simplifies symlink creation using GNU Stow.
 - Automatically detects enabled and disabled packages.
-- Simple feedback with clear output messages for success or errors.
+- Compatible with Linux, macOS, and other Unix-based systems.
 
 ## How to Use
 
-1. Clone this repository into a location of your choice:
+1. Clone this repository into your preferred location:
    ```
    git clone https://github.com/username/dotfiles.git ~/dotfiles
    ```
@@ -43,26 +43,18 @@ This tool is designed for managing dotfiles in a structured way using GNU Stow. 
    brew install stow          # For macOS
    ```
 
-4. Organize your dotfiles under a `packages/` directory:
-   ```
-   dotfiles/
-   ├── packages/
-   │   ├── nvim/
-   │   │   ├── init.vim
-   │   ├── zsh/
-   │   │   ├── .zshrc
-   ```
+4. Ensure your dotfiles are organized under the `packages/` directory.
 
 5. Run the package manager in interactive mode:
    ```
-   python3 manager.py
+   python3 package_manager.py
    ```
 
 6. Alternatively, use command-line options for specific tasks (see [Available Commands](#available-commands)).
 
 ## Available Commands
 
-The following options are available for command-line usage:
+You can use the following command-line options to manage your configurations:
 
 ```
 -i, --install PACKAGE         Enable one or more packages (e.g., nvim, zsh).
@@ -89,41 +81,47 @@ python3 manager.py -ld
 
 ## How It Works
 
-The tool is built around GNU Stow's functionality:
-
-1. **Packages Directory:** All packages are stored in a `packages/` directory. Each package is a subdirectory containing the dotfiles or configuration files to symlink.
-2. **Symlinks:** When you enable a package, GNU Stow creates symlinks in `$HOME` or `$HOME/.config`, depending on the file structure.
-3. **Interactive Menu:** In interactive mode, you can use the arrow keys to navigate and toggle packages.
-4. **Direct Commands:** Command-line options allow you to skip the interactive interface for quick actions.
+1. **Packages Directory:** Dotfiles are grouped into packages under the `packages/` directory. Each package corresponds to a specific tool or application.
+2. **Symlinks with Stow:** GNU Stow handles the creation of symlinks in `$HOME` or `$HOME/.config` based on the package structure.
+3. **Interactive Mode:** Navigate and toggle packages using an easy-to-use terminal interface.
+4. **Direct Commands:** Command-line options allow quick enable/disable actions.
 
 ## Example Directory Structure
 
-The `packages/` directory should have a structure similar to this:
+Organize your dotfiles in the `packages/` directory as follows:
 ```
 dotfiles/
 ├── packages/
 │   ├── nvim/
-│   │   ├── init.vim
-│   │   ├── other-config.vim
+│   │   ├── .config/
+│   │   │   ├── nvim/
+│   │   │   │   ├── init.lua
+│   │   │   │   ├── etc.lua
+│   ├── hypr/
+│   │   ├── .config/
+│   │   │   ├── hypr/
+│   │   │   │   ├── hyprland.conf
+│   │   │   │   ├── hyprpaper.conf
+│   │   │   │   ├── etc.conf
 │   ├── zsh/
 │   │   ├── .zshrc
-│   ├── tmux/
-│   │   ├── .tmux.conf
+│   │   ├── .zsh_env
+│   │   ├── .zsh_etc
 ```
 
-When you enable the `nvim` package, the manager creates symlinks for `init.vim` and other files in the appropriate locations in your home directory.
+When enabling the `nvim` package, the manager creates symlinks for its configuration files under `$HOME/.config/nvim`.
 
 ## Contributing
 
-Contributions are welcome! If you have ideas or improvements for this package manager, feel free to:
+Contributions are welcome! Feel free to:
 
 1. Fork the repository.
-2. Create a new branch with your changes:
+2. Create a branch for your changes:
    ```
    git checkout -b feature/my-feature
    ```
-3. Submit a pull request with a detailed explanation of your changes.
+3. Submit a pull request with a clear description of your improvements.
 
 ---
 
-If you have any questions or run into issues, feel free to open an issue in the repository. Happy dotfile management!
+If you encounter any issues or have questions, open an issue in the repository. Enjoy managing your dotfiles effortlessly!
