@@ -5,6 +5,13 @@ A terminal-based package manager that uses GNU Stow to manage dotfiles and packa
 It provides an interactive interface to enable/disable packages by creating/removing symlinks.
 """
 
+# TODO: Add -i --install flag to directly install packages
+# TODO: Add -r --remove flag to directly remove packages
+
+# TODO: Add the -le --list-enabled flag to list the enabled packages
+# TODO: Add the -ld --list-disabled flag to list the disabled packages
+# TODO: Add the -la --list-all flat to list all the available packages
+
 import sys
 import termios
 import tty
