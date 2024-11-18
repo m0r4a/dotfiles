@@ -5,90 +5,137 @@ A terminal-based package manager that uses GNU Stow to manage dotfiles and packa
 It provides an interactive interface to enable/disable packages by creating/removing symlinks.
 """
 
-# TODO: Add -i --install flag to directly install packages
-# TODO: Add -r --remove flag to directly remove packages
-
-# TODO: Add the -le --list-enabled flag to list the enabled packages
-# TODO: Add the -ld --list-disabled flag to list the disabled packages
-# TODO: Add the -la --list-all flat to list all the available packages
-
 import sys
 import termios
 import tty
 import os
+from os import path
 import subprocess
+import shutil
+import argparse
 from typing import List, Tuple
 
-GREEN = "\033[32m"
-RED = "\033[31m"
-RESET = "\033[0m"
+COLORS = {
+    'GREEN': "\033[32m",
+    'RED': "\033[31m",
+    'RESET': "\033[0m"
+}
+
+PACKAGE_INSTALL_COMMANDS = {
+    'debian': 'sudo apt install stow',
+    'fedora': 'sudo dnf install stow',
+    'arch': 'sudo pacman -S stow',
+    'macos': 'brew install stow',
+    'windows': 'why are you using windows?'
+}
+
+
+def create_parser() -> argparse.ArgumentParser:
+    """Create and configure the argument parser for the package manager."""
+    parser = argparse.ArgumentParser(
+        description="Terminal-based package manager using GNU Stow to manage dotfiles and packages.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  %(prog)s                    # Run in interactive mode
+  %(prog)s -i nvim hypr       # Install specified packages
+  %(prog)s -r nvim            # Remove specified package
+  %(prog)s -le                # List enabled packages
+  %(prog)s -la                # List all available packages
+        """
+    )
+
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-i", "--install", nargs="+", metavar="PACKAGE",
+                       help="directly install specified packages")
+    group.add_argument("-r", "--remove", nargs="+", metavar="PACKAGE",
+                       help="directly remove specified packages")
+    group.add_argument("-le", "--list-enabled", action="store_true",
+                       help="list all enabled packages")
+    group.add_argument("-ld", "--list-disabled", action="store_true",
+                       help="list all disabled packages")
+    group.add_argument("-la", "--list-all", action="store_true",
+                       help="list all available packages")
+
+    return parser
+
+
+def check_stow_installed() -> None:
+    """Verify that GNU Stow is installed in the system."""
+    if not shutil.which("stow"):
+        commands = "\n".join(
+            f"  - {distro}: {cmd}"
+            for distro, cmd in PACKAGE_INSTALL_COMMANDS.items()
+        )
+        print(
+            f"{COLORS['RED']}Error: GNU Stow is not installed or not found in PATH."
+            f"{COLORS['RESET']}\nPlease install it using your package manager:\n{
+                commands}"
+        )
+        sys.exit(1)
 
 
 class PackageManager:
     def __init__(self, packages_dir: str = "./packages"):
-        """
-        Initialize the package manager.
-
-        Args:
-            packages_dir: Directory containing the packages to manage
-        """
-        self.home = os.path.expanduser("~")
-        self.config_dirs = [self.home, os.path.join(self.home, ".config")]
+        """Initialize the package manager."""
+        self.home = path.expanduser("~")
+        self.config_dirs = [self.home, path.join(self.home, ".config")]
         self.packages_dir = packages_dir
 
     def get_packages(self) -> List[Tuple[str, bool]]:
-        """
-        Get list of packages and their installation status.
-
-        Returns:
-            List of tuples containing (package_name, is_installed)
-
-        Raises:
-            FileNotFoundError: If packages directory doesn't exist
-        """
-        if not os.path.isdir(self.packages_dir):
+        """Get list of packages and their installation status."""
+        if not path.isdir(self.packages_dir):
             raise FileNotFoundError(
                 f"Directory {self.packages_dir} does not exist")
 
         packages = [
             entry for entry in os.listdir(self.packages_dir)
-            if os.path.isdir(os.path.join(self.packages_dir, entry))
+            if path.isdir(path.join(self.packages_dir, entry))
         ]
 
         items = [(pkg, self._is_package_installed(pkg)) for pkg in packages]
 
         return sorted(items, key=lambda x: x[1])
 
+    def get_available_packages(self) -> List[str]:
+        """Get list of available package names."""
+        if not path.isdir(self.packages_dir):
+            raise FileNotFoundError(
+                f"Directory {self.packages_dir} does not exist")
+
+        return sorted(
+            entry for entry in os.listdir(self.packages_dir)
+            if path.isdir(path.join(self.packages_dir, entry))
+        )
+
+    def verify_packages_exist(self, packages: List[str]) -> None:
+        """Verify that all specified packages exist."""
+        available = set(self.get_available_packages())
+        invalid = set(packages) - available
+
+        if invalid:
+            raise ValueError(
+                f"The following packages do not exist: {
+                    ', '.join(sorted(invalid))}\n"
+                f"Available packages are: {', '.join(sorted(available))}"
+            )
+
     def _is_package_installed(self, package: str) -> bool:
-        """
-        Check if a package is installed by looking for its symlinks.
+        """Check if a package is installed by looking for its symlinks."""
+        package_path = f"packages/{package}/"
 
-        Args:
-            package: Name of the package to check
-
-        Returns:
-            True if package is installed, False otherwise
-        """
         for directory in self.config_dirs:
             try:
-                for entry in os.listdir(directory):
-                    entry_path = os.path.join(directory, entry)
-                    if os.path.islink(entry_path):
-                        link_target = os.readlink(entry_path)
-                        if f"packages/{package}/" in link_target:
-                            return True
+                for entry in os.scandir(directory):
+                    if (entry.is_symlink() and
+                            package_path in os.readlink(entry.path)):
+                        return True
             except (FileNotFoundError, PermissionError) as e:
                 print(f"Warning: Could not access {directory}: {e}")
         return False
 
     def update_packages(self, enabled: List[str], disabled: List[str]) -> None:
-        """
-        Update packages using GNU Stow. Enable and disable packages as specified.
-
-        Args:
-            enabled: List of packages to enable
-            disabled: List of packages to disable
-        """
+        """Update packages using GNU Stow."""
         os.chdir(self.packages_dir)
 
         for package in enabled:
@@ -100,23 +147,18 @@ class PackageManager:
         os.chdir("..")
 
     def _run_stow_command(self, package: str, install: bool) -> None:
-        """
-        Run stow command for a package.
-
-        Args:
-            package: Package name
-            install: True to install, False to uninstall
-        """
+        """Run stow command for a package."""
         action = "enable" if install else "disable"
-        cmd = ["stow"] + (["-D"] if not install else []) + \
-            [package, "-t", self.home]
+        cmd = ["stow", "-D" if not install else "", package, "-t", self.home]
+        cmd = [arg for arg in cmd if arg]  # Remove empty strings
 
         try:
             result = subprocess.run(cmd, capture_output=True, text=True)
             if result.returncode == 0:
-                print(f"{GREEN}✓{RESET} {action.capitalize()}d: {package}")
+                print(f"{COLORS['GREEN']}✓{COLORS['RESET']} {
+                      action.capitalize()}d: {package}")
             else:
-                print(f"{RED}✗{RESET} Failed to {
+                print(f"{COLORS['RED']}✗{COLORS['RESET']} Failed to {
                       action} {package}: {result.stderr}")
         except subprocess.SubprocessError as e:
             print(f"✗ Error running stow for {package}: {e}")
@@ -125,12 +167,7 @@ class PackageManager:
 class TerminalUI:
     @staticmethod
     def get_key() -> str:
-        """
-        Read a single keypress or an escape sequence without requiring Enter.
-
-        Returns:
-            The pressed key or escape sequence as a string
-        """
+        """Read a single keypress or an escape sequence."""
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
 
@@ -140,19 +177,12 @@ class TerminalUI:
             if ch == '\x1b':
                 ch += sys.stdin.read(2)
             return ch
-
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 
     @staticmethod
     def draw_menu(items: List[Tuple[str, bool]], active: int) -> None:
-        """
-        Draw the interactive menu.
-
-        Args:
-            items: List of (package_name, is_selected) tuples
-            active: Index of the currently active item
-        """
+        """Draw the interactive menu."""
         print("\033c", end="")  # Clear screen
         print("Select packages to enable/disable\n")
 
@@ -167,59 +197,52 @@ class TerminalUI:
 
 class PackageMenu:
     def __init__(self, package_manager: PackageManager):
-        """
-        Initialize the package menu.
-
-        Args:
-            package_manager: Instance of PackageManager to use
-        """
+        """Initialize the package menu."""
         self.package_manager = package_manager
         self.items = package_manager.get_packages()
         self.original_items = self.items[:]
         self.active = 0
+        self._key_actions = {
+            'q': lambda: True,
+            '\r': lambda: True,
+            ' ': self._toggle_current_item,
+            **{k: self._move_up for k in ['k', 'p', '\x1b[A']},
+            **{k: self._move_down for k in ['j', 'n', '\x1b[B']}
+        }
+
+    def _move_up(self) -> bool:
+        self.active = (self.active - 1) % len(self.items)
+        return False
+
+    def _move_down(self) -> bool:
+        self.active = (self.active + 1) % len(self.items)
+        return False
+
+    def _toggle_current_item(self) -> bool:
+        self.items[self.active] = (
+            self.items[self.active][0],
+            not self.items[self.active][1]
+        )
+        return False
 
     def handle_input(self) -> bool:
-        """
-        Handle single keypress input.
-        Returns: True if should exit menu, False to continue
-        """
+        """Handle single keypress input."""
         key = TerminalUI.get_key()
-
-        if key == "q":
-            print("\nExiting...")
-            return True
-
-        if key == "\r":  # Enter key
-            return True
-
-        if key in ["k", "p", "\x1b[A"]:  # Up
-            self.active = (self.active - 1) % len(self.items)
-
-        elif key in ["j", "n", "\x1b[B"]:  # Down
-            self.active = (self.active + 1) % len(self.items)
-
-        elif key == " ":  # Space
-            self.items[self.active] = (
-                self.items[self.active][0],
-                not self.items[self.active][1]
-            )
-
-        return False
+        action = self._key_actions.get(key, lambda: False)
+        return action()
 
     def display_changes(self, enabled: List[str], disabled: List[str]) -> None:
         """Display selected packages and pending changes."""
-
         print("\nChanges to apply:")
         if enabled:
-            print(f"{GREEN}To enable:{RESET}", ", ".join(enabled))
+            print(f"{COLORS['GREEN']}To enable:{
+                  COLORS['RESET']}", ", ".join(enabled))
         if disabled:
-            print(f"{RED}To disable:{RESET}", ", ".join(disabled))
+            print(f"{COLORS['RED']}To disable:{
+                  COLORS['RESET']}", ", ".join(disabled))
 
     def run(self) -> Tuple[List[str], List[str]]:
-        """
-        Run the interactive menu loop.
-        Returns: Tuple of (enabled_packages, disabled_packages)
-        """
+        """Run the interactive menu loop."""
         while True:
             TerminalUI.draw_menu(self.items, self.active)
             if self.handle_input():
@@ -230,29 +253,13 @@ class PackageMenu:
 
 def get_changes(original: List[Tuple[str, bool]],
                 updated: List[Tuple[str, bool]]) -> Tuple[List[str], List[str]]:
-    """
-    Determine changes between original and updated states.
-
-    Args:
-        original: Original package states
-        updated: Updated package states
-
-    Returns:
-        Tuple of (enabled_packages, disabled_packages)
-    """
-    enabled = []
-    disabled = []
-
-    for (orig_item, orig_state), (updated_item, updated_state) in zip(original, updated):
-        if orig_item != updated_item:
-            raise ValueError("Package name mismatch between states")
-
-        if not orig_state and updated_state:
-            enabled.append(orig_item)
-        elif orig_state and not updated_state:
-            disabled.append(orig_item)
-
-    return enabled, disabled
+    """Determine changes between original and updated states."""
+    return (
+        [item for (item, new_state), (_, old_state) in zip(updated, original)
+         if not old_state and new_state],
+        [item for (item, new_state), (_, old_state) in zip(updated, original)
+         if old_state and not new_state]
+    )
 
 
 def apply_changes(package_manager: PackageManager,
@@ -268,20 +275,72 @@ def apply_changes(package_manager: PackageManager,
         print("\nOperation cancelled.")
 
 
+def handle_cli_mode(args: argparse.Namespace, package_manager: PackageManager) -> None:
+    """Handle command-line interface mode operations."""
+    try:
+        if args.install:
+            package_manager.verify_packages_exist(args.install)
+            package_manager.update_packages(enabled=args.install, disabled=[])
+
+        elif args.remove:
+            package_manager.verify_packages_exist(args.remove)
+            package_manager.update_packages(enabled=[], disabled=args.remove)
+
+        elif any([args.list_enabled, args.list_disabled, args.list_all]):
+            packages = package_manager.get_packages()
+            if args.list_enabled:
+                _display_package_list("Enabled packages:",
+                                      [pkg for pkg, enabled in packages if enabled])
+            elif args.list_disabled:
+                _display_package_list("Disabled packages:",
+                                      [pkg for pkg, enabled in packages if not enabled])
+            else:  # list_all
+                enabled = [pkg for pkg, is_enabled in packages if is_enabled]
+                disabled = [pkg for pkg,
+                            is_enabled in packages if not is_enabled]
+
+                print("Available packages:")
+                if enabled:
+                    print(f"\n{COLORS['GREEN']}Enabled:{COLORS['RESET']}")
+                    print("\n".join(f"  {pkg}" for pkg in enabled))
+                if disabled:
+                    print(f"\n{COLORS['RED']}Disabled:{COLORS['RESET']}")
+                    print("\n".join(f"  {pkg}" for pkg in disabled))
+
+    except (FileNotFoundError, ValueError) as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def _display_package_list(title: str, packages: List[str]) -> None:
+    """Helper function to display a list of packages."""
+    if packages:
+        print(f"{title}")
+        print("\n".join(f"  {pkg}" for pkg in packages))
+    else:
+        print(f"No packages are currently {title.lower().rstrip(':')}")
+
+
 def main():
     """Main program loop."""
     try:
+        check_stow_installed()
+        parser = create_parser()
+        args = parser.parse_args()
         package_manager = PackageManager()
-        menu = PackageMenu(package_manager)
 
-        # Run menu and get changes
+        if any([args.install, args.remove, args.list_enabled,
+               args.list_disabled, args.list_all]):
+            handle_cli_mode(args, package_manager)
+            return
+
+        menu = PackageMenu(package_manager)
         enabled, disabled = menu.run()
 
         if not enabled and not disabled:
             print("\nNo changes to apply.")
             return
 
-        # Display and apply changes
         menu.display_changes(enabled, disabled)
         apply_changes(package_manager, enabled, disabled)
 
