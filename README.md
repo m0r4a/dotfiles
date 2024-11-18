@@ -11,6 +11,7 @@ This repository contains my **dotfiles**, organized for efficient management usi
 - [How It Works](#how-it-works)
 - [Example Directory Structure](#example-directory-structure)
 - [Contributing](#contributing)
+- [TODOs](#todos)
 
 ## Introduction
 
@@ -111,6 +112,8 @@ dotfiles/
 
 When enabling the `nvim` package, the manager creates symlinks for its configuration files under `$HOME/.config/nvim`.
 
+When enabling the `zsh` package, the manager creates symlinks for its configuration files directly under `$HOME`, as the files are not located within a .config directory in the package.
+
 ## Contributing
 
 Contributions are welcome! Feel free to:
@@ -121,6 +124,10 @@ Contributions are welcome! Feel free to:
    git checkout -b feature/my-feature
    ```
 3. Submit a pull request with a clear description of your improvements.
+
+## Todos
+
+- Add a feature to replace existing dotfiles in the repository with the user's current setup. - For example, copy `$HOME/.config/hypr/` to `packages/hypr/.config/hypr/`. - Ensure proper structure and prompt for confirmation if files already exist.
 
 ---
 
