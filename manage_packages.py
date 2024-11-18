@@ -48,7 +48,9 @@ class PackageManager:
             if os.path.isdir(os.path.join(self.packages_dir, entry))
         ]
 
-        return [(pkg, self._is_package_installed(pkg)) for pkg in packages]
+        items = [(pkg, self._is_package_installed(pkg)) for pkg in packages]
+
+        return sorted(items, key=lambda x: x[1])
 
     def _is_package_installed(self, package: str) -> bool:
         """
@@ -66,7 +68,7 @@ class PackageManager:
                     entry_path = os.path.join(directory, entry)
                     if os.path.islink(entry_path):
                         link_target = os.readlink(entry_path)
-                        if f"packages/{package}" in link_target:
+                        if f"packages/{package}/" in link_target:
                             return True
             except (FileNotFoundError, PermissionError) as e:
                 print(f"Warning: Could not access {directory}: {e}")
