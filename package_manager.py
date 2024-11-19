@@ -192,17 +192,22 @@ class PackageManager:
 
         if path.exists(config_subdir):
             config_src = path.join(config_subdir, config_name)
-            config_dest = path.join(self.home, ".config", config_name)
+            config_dest = path.join(self.home, ".config")
+
+            if path.islink(config_dest):
+                os.unlink(config_dest)
+
+            shutil.move(config_src, config_dest)
         else:
             config_src = package_dir
-            config_dest = self.home
 
-        if path.islink(config_dest):
-            os.unlink(config_dest)
+            for item in os.listdir(config_src):
+                dest_path = path.join(self.home, item)
 
-        for item in os.listdir(config_src):
-            shutil.move(path.join(config_src, item),
-                        path.join(config_dest, item))
+                if path.islink(dest_path):
+                    os.unlink(dest_path)
+
+                shutil.move(path.join(config_src, item), dest_path)
 
         shutil.rmtree(package_dir)
         print(f"{COLORS['RED']}✓{COLORS['RESET']} De-imported: {config_name}")
