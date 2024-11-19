@@ -412,8 +412,8 @@ def check_packages_exist(packages_dir: str) -> bool:
               COLORS['RESET']}")
         while True:
             response = input(
-                "Would you like to import configurations from $HOME/.config? (y/n): ").lower()
-            if response in ['y', 'yes']:
+                "Would you like to import configurations from $HOME/.config? (Y/n): ").lower()
+            if response in ['y', 'yes', '']:
                 package_manager = PackageManager(packages_dir)
                 handle_import_mode(package_manager)
                 return False
