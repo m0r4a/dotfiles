@@ -6,6 +6,7 @@ This repository contains my **dotfiles**, organized for efficient management usi
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Showcase](#showcase)
 - [How to Use](#how-to-use)
 - [Available Commands](#available-commands)
 - [How It Works](#how-it-works)
@@ -16,6 +17,12 @@ This repository contains my **dotfiles**, organized for efficient management usi
 ## Introduction
 
 This repository houses my personal dotfiles for tools like Neovim, Hyprland, Zsh, and others. By leveraging an integrated package manager, you can quickly enable or disable these configurations, ensuring a seamless experience across systems. This approach provides flexibility, whether you prefer an interactive terminal interface or command-line efficiency.
+
+## Showcase
+
+<p align="center">
+    <img src="resources/showcase.gif" alt="GIF of the package manager"/>
+</p>
 
 ## Features
 
