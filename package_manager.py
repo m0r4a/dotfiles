@@ -117,10 +117,11 @@ class PackageManager:
         seen_in_config = set()
         seen_in_home = set()
 
-        # Check for available and already imported package
+        # Check for available and already imported packages in .config
         for entry in os.scandir(config_dir):
             if entry.is_dir() or entry.is_symlink():
-                is_imported = entry.is_symlink() and entry.name in available_packages
+                in_packages = entry.name in available_packages
+                is_imported = entry.is_symlink() and in_packages
                 if is_imported:
                     configs.append((entry.name + " (enabled)", is_imported))
                 else:
@@ -128,17 +129,38 @@ class PackageManager:
 
                 seen_in_config.add(entry.name)
 
+        # Check for available and already imported packages
+        # in $HOME, special handle of entry.name because entry.name
+        # is read-only and I want to add support for zsh and bash
         for entry in os.scandir(self.home):
             if entry.is_symlink():
-                is_imported = entry.name in available_packages
+                entry = entry.name
+                if entry == ".zshrc":
+                    entry = "zsh"
+                elif entry == ".bashrc":
+                    entry = "bash"
+
+                is_imported = entry in available_packages
+
                 if is_imported:
                     configs.append(
-                        (entry.name + " (enabled) $HOME dir", is_imported))
+                        (entry + " (enabled) $HOME dir", is_imported))
 
-                    seen_in_home.add(entry.name)
+                seen_in_home.add(entry)
 
-        for package in available_packages - seen_in_config - seen_in_home:
-            configs.append((package + " (disabled)", True))
+        for package in available_packages:
+            found_in_config = package in seen_in_config
+            found_in_home = package in seen_in_home
+
+            package_dir = path.join(self.packages_dir, package)
+            config_subdir = path.join(package_dir, ".config")
+            has_dot_config = path.exists(config_subdir)
+
+            if not found_in_config and not found_in_home:
+                if has_dot_config:
+                    configs.append((package + " (disabled)", True))
+                else:
+                    configs.append((package + " (disabled) $HOME dir", True))
 
         return sorted(configs, key=lambda x: x[1])
 
@@ -165,10 +187,8 @@ class PackageManager:
                                    } Imported and enabled: {package_to_import}")
 
     def deimport_config(self, config_name: str) -> None:
-        """Restore a configuration from packages directory to $HOME/.config."""
-        # Convert package_name (enabled/disabled) to package_name
+        """Restore a configuration from packages directory to $HOME."""
         config_name = config_name.split(" ")[0]
-
         package_dir = path.join(self.packages_dir, config_name)
         config_subdir = path.join(package_dir, ".config")
 
@@ -176,18 +196,16 @@ class PackageManager:
             config_src = path.join(config_subdir, config_name)
             config_dest = path.join(self.home, ".config", config_name)
         else:
-            config_src = path.join(package_dir, config_name)
-            config_dest = path.join(self.home, config_name)
+            config_src = package_dir
+            config_dest = self.home
 
-        # Remove existing symlink if present
         if path.islink(config_dest):
             os.unlink(config_dest)
 
-        # Move the configuration back
-        shutil.move(config_src, config_dest)
+        for item in os.listdir(config_src):
+            shutil.move(path.join(config_src, item),
+                        path.join(config_dest, item))
 
-        # Clean up empty package directory
-        package_dir = path.join(self.packages_dir, config_name)
         shutil.rmtree(package_dir)
         print(f"{COLORS['RED']}✓{COLORS['RESET']} De-imported: {config_name}")
 
