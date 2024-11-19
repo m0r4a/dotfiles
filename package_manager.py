@@ -416,7 +416,7 @@ def check_packages_exist(packages_dir: str) -> bool:
             if response in ['y', 'yes']:
                 package_manager = PackageManager(packages_dir)
                 handle_import_mode(package_manager)
-                return True
+                return False
             elif response in ['n', 'no']:
                 return False
             else:
