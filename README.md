@@ -18,12 +18,6 @@ This repository contains my **dotfiles**, organized for efficient management usi
 
 This repository houses my personal dotfiles for tools like Neovim, Hyprland, Zsh, and others. By leveraging an integrated package manager, you can quickly enable or disable these configurations, ensuring a seamless experience across systems. This approach provides flexibility, whether you prefer an interactive terminal interface or command-line efficiency.
 
-## Showcase
-
-<p align="center">
-    <img src="resources/showcase.gif" alt="GIF of the package manager"/>
-</p>
-
 ## Features
 
 - Centralized storage for dotfiles with a consistent structure.
@@ -31,6 +25,19 @@ This repository houses my personal dotfiles for tools like Neovim, Hyprland, Zsh
 - Simplifies symlink creation using GNU Stow.
 - Automatically detects enabled and disabled packages.
 - Compatible with Linux, macOS, and other Unix-based systems.
+
+## Showcase
+
+<p align="center">
+    <img src="resources/showcase.gif" alt="GIF of the package manager"/>
+</p>
+
+
+## Showcase
+
+<p align="center">
+    <img src="resources/showcase2.gif" alt="GIF of the package manager"/>
+</p>
 
 ## How to Use
 
