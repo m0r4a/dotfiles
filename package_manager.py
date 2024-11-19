@@ -140,7 +140,7 @@ class PackageManager:
         for package in available_packages - seen_in_config - seen_in_home:
             configs.append((package + " (disabled)", True))
 
-        return sorted(configs, key=lambda x: x[0])
+        return sorted(configs, key=lambda x: x[1])
 
     def import_config(self, package_to_import: str) -> None:
         """Import a configuration from $HOME/.config to packages directory."""
@@ -265,14 +265,29 @@ class TerminalUI:
 
     @staticmethod
     def draw_menu(items: List[Tuple[str, bool]], active: int, title: str) -> None:
-        """Draw the interactive menu."""
+        """Draw the interactive menu with pagination of 15 items."""
         print("\033c", end="")  # Clear screen
         print(title)
 
-        for i, (item, checked) in enumerate(items):
-            prefix = "[*]" if checked else "[ ]"
+    # Find the range for the elements to show
+        total_items = len(items)
+        items_to_show = 20
+        start_index = max(0, min(active - 7, total_items - items_to_show))
+        end_index = min(start_index + items_to_show, total_items)
+
+    # Show ... if not printing the first element
+        if start_index > 0:
+            print("  ...")
+
+    # Move around
+        for i in range(start_index, end_index):
+            prefix = "[*]" if items[i][1] else "[ ]"
             cursor = "> " if i == active else "  "
-            print(f"{cursor}{prefix} {item}")
+            print(f"{cursor}{prefix} {items[i][0]}")
+
+    # Show ... if there's more elements to show
+        if end_index < total_items:
+            print("  ...")
 
         print("\nControls:")
         print("↑/k/p: Up | ↓/j/n: Down | Space: Toggle | Enter: Confirm | q: Quit")
