@@ -162,7 +162,7 @@ class PackageManager:
                 else:
                     configs.append((package + " (disabled) $HOME dir", True))
 
-        return sorted(configs, key=lambda x: x[1])
+        return sorted(configs, key=lambda x: (x[1], x[0]))
 
     def import_config(self, package_to_import: str) -> None:
         """Import a configuration from $HOME/.config to packages directory."""
@@ -179,12 +179,10 @@ class PackageManager:
         # Move the configuration
         shutil.move(config_src, path.join(config_dest, package_to_import))
 
-        # Enable the package
-        print(package_to_import)
-        self._run_stow_command(package_to_import, install=True)
-
         print(f"{COLORS['GREEN']}✓{COLORS['RESET']
-                                   } Imported and enabled: {package_to_import}")
+                                   } Imported: {package_to_import}")
+        # Enable the package
+        self._run_stow_command(package_to_import, install=True)
 
     def deimport_config(self, config_name: str) -> None:
         """Restore a configuration from packages directory to $HOME."""
