@@ -33,19 +33,6 @@ This repository houses my personal dotfiles for tools like Neovim, Hyprland, Zsh
 </p>
 
 
-## Showcase
-
-<p align="center">
-    <img src="resources/showcase2.gif" alt="GIF of the package manager"/>
-</p>
-
-
-## Showcase
-
-<p align="center">
-    <img src="resources/showcase3.gif" alt="GIF of the package manager"/>
-</p>
-
 ## How to Use
 
 1. Clone this repository into your preferred location:
