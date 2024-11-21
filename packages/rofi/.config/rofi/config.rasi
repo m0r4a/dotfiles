@@ -4,35 +4,35 @@
 /* ---- Configuration ---- */
 
 configuration {
-	font:						"FiraCode Nerd Font 12";
-	modi:                       "drun,run,filebrowser";
+    font:			"FiraCode Nerd Font 12";
+    modi:                       "drun,run,filebrowser";
     show-icons:                 true;
     display-drun:               "Apps";
     display-run:                "Run";
     display-filebrowser:        "Files";
     display-window:             "Windows";
-	drun-display-format:        "{name}";
-	hover-select:               true;
-	me-select-entry:            "MouseSecondary";
+    drun-display-format:        "{name}";
+    hover-select:               true;
+    me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
-	window-format:              "{w} · {c} · {t}";
-	dpi:						1;
+    window-format:              "{w} · {c} · {t}";
+    dpi:			1;
 }
 
 /* ---- Load pywal colors ---- */
-@theme "~/.cache/wal/colors-rofi-light.rasi"
+@theme "~/.cache/wal/colors-rofi.rasi"
 
 /* ---- Global Properties ---- */
 * {
 
-    background-alt:              @selected-active-background; // Buttons background
-    selected:                    @selected-urgent-background; // Button selected
-    active:                      @selected-normal-background; // Window activated
+    background-alt:              @active-background; // Buttons background
+    selected:                    @active-background; // Button selected
+    active:                      @active-background; // Window activated
     urgent:                      @selected; // When hovering the activated window (maybe more?)
 
-    text-selected:               @background;
-    text-color:                  @foreground;
-    border-color:                @selected;
+    text-selected:               #000000;
+    text-color:                  #ffffff;
+    border-color:                @active-background;
 }
 
 /* ---- Window ---- */
@@ -50,7 +50,7 @@ window {
 
     // Style Values
     width:                      50%;
-    background-color:           @background;
+    background-color:           #000000bf;
 }
 
 /* ----- Main Box ----- */
@@ -138,7 +138,7 @@ button {
     cursor:                      pointer;
 }
 button selected {
-    background-color:            @selected;
+    background-color:            #ff0000;
     text-color:                  @text-selected;
 }
 
@@ -175,11 +175,11 @@ element normal.active {
 }
 
 element selected.normal {
-    border:                      1px 6px 1px 6px;
-    border-radius:               16px;
-    border-color:                @selected;
-    background-color:            transparent;
-    text-color:                  @selected;
+    border:                      3px 3px 1px 3px;
+    border-radius:               20px;
+    border-color:                @active-background;
+    background-color:            @active-background;
+    text-color:                  #ffffff;
 }
 
 element selected.urgent {
