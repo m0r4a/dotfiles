@@ -18,4 +18,4 @@ wallpaper = HDMI-A-1, $wallpaper
 EOF
 
 killall waybar
-waybar
+waybar &
