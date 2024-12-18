@@ -1,0 +1,48 @@
+{
+    "checksum": "fb4c0df9b25d6596ef4bc4ccffb984ba",
+    "wallpaper": "/home/m0r4a/Wallpapers/sundown.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#050609",
+        "foreground": "#c0c0c1",
+        "cursor": "#c0c0c1"
+    },
+    "colors": {
+        "starship1": "#812734",
+        "starship2": "#a86063",
+        "starship3": "#e18085",
+
+        "waybar_fg": "#dd98b5",
+        "waybar_bg": "#a86063",
+
+        "waybar_workspace_active": "#ffefef",
+        "waybar_workspace_inactive": "#5a4d66",
+        "waybar_workspace_inactive_with_content": "#f5b8bb",
+
+        "hyprland_border_1": "#e18085",
+        "hyprland_border_2": "#812734",
+
+        "rofi-border": "#e18085",
+        "rofi-scrollbar": "#e18085",
+        "rofi-selected": "#f5b8bb",
+        "rofi-selected-border": "#e19095",
+        "rofi-typing-box-color": "#f5b8bb",
+
+        "color0": "#050609",
+        "color1": "#812734",
+        "color2": "#a57287",
+        "color3": "#5a4d66",
+        "color4": "#27334d",
+        "color5": "#a86063",
+        "color6": "#b78a8c",
+        "color7": "#898994",
+        "color8": "#545a66",
+        "color9": "#601d27",
+        "color10": "#354567",
+        "color11": "#796789",
+        "color12": "#f5b8bb",
+        "color13": "#e18085",
+        "color14": "#dd98b5",
+        "color15": "#c0c0c1"
+    }
+}

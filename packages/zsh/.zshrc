@@ -3,6 +3,9 @@ PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/ve
 # Importing my aliases
 source ~/.zsh_aliases
 
+## Private stuff
+source ~/.zsh_private
+
 # Importing my environment variables
 source ~/.zsh_env
 

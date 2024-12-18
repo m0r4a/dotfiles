@@ -1,0 +1,49 @@
+{
+    "checksum": "74d1137798e21d207a1a825cf74d4ea0",
+    "wallpaper": "/home/m0r4a/Wallpapers/my_room.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#070608",
+        "foreground": "#c1c0c1",
+        "cursor": "#c1c0c1"
+    },
+    "colors": {
+
+        "starship1": "#5a48bb",
+        "starship2": "#7c6dc9",
+        "starship3": "#9e93d7",
+
+        "waybar_fg": "#bfb8e4",
+        "waybar_bg": "#7c6dc9",
+
+        "waybar_workspace_active": "#ffefef",
+        "waybar_workspace_inactive": "#8e89a2",
+        "waybar_workspace_inactive_with_content": "#695da6",
+
+        "hyprland_border_1": "#777fcf",
+        "hyprland_border_2": "#2c3774",
+
+        "rofi-border": "#777fcf",
+        "rofi-scrollbar": "#777fcf",
+        "rofi-selected": "#9e93d7",
+        "rofi-selected-border": "#7c6dc9",
+        "rofi-typing-box-color": "#9e93d7",
+
+        "color0": "#070608",
+        "color1": "#212957",
+        "color2": "#562d1e",
+        "color3": "#4c3256",
+        "color4": "#64472d",
+        "color5": "#5c515d",
+        "color6": "#595f9b",
+        "color7": "#948894",
+        "color8": "#545466",
+        "color9": "#2c3774",
+        "color10": "#733c28",
+        "color11": "#664373",
+        "color12": "#865f3d",
+        "color13": "#7b6c7d",
+        "color14": "#777fcf",
+        "color15": "#c1c0c1"
+    }
+}

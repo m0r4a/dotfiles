@@ -1,0 +1,48 @@
+{
+    "checksum": "19c64b2f6dffc11ca531fbb8f0dfda3c",
+    "wallpaper": "/home/m0r4a/Wallpapers/arch_gruvbox.png",
+    "alpha": "100",
+    "special": {
+        "background": "#070707",
+        "foreground": "#c1c1c1",
+        "cursor": "#c1c1c1"
+    },
+    "colors": {
+        "starship1": "#6a966c",
+        "starship2": "#42848a",
+        "starship3": "#e3aa3f",
+
+        "waybar_fg": "#83a598",
+        "waybar_bg": "#706a65",
+
+        "waybar_workspace_active": "#ffefef",
+        "waybar_workspace_inactive": "#5a4d66",
+        "waybar_workspace_inactive_with_content": "#f5b8bb",
+
+        "hyprland_border_1": "#e18085",
+        "hyprland_border_2": "#812734",
+
+        "rofi-border": "#e18085",
+        "rofi-scrollbar": "#e18085",
+        "rofi-selected": "#f5b8bb",
+        "rofi-selected-border": "#e19095",
+        "rofi-typing-box-color": "#f5b8bb",
+
+        "color0": "#070707",
+        "color1": "#571f1a",
+        "color2": "#991d15",
+        "color3": "#316367",
+        "color4": "#40644d",
+        "color5": "#4f7051",
+        "color6": "#a07118",
+        "color7": "#948989",
+        "color8": "#665353",
+        "color9": "#752a23",
+        "color10": "#cd271d",
+        "color11": "#42848a",
+        "color12": "#568667",
+        "color13": "#6a966c",
+        "color14": "#d69720",
+        "color15": "#c1c1c1"
+    }
+}

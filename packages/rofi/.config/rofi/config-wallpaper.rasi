@@ -30,6 +30,7 @@ listview {
     columns: 3;
     lines: 2;
     cycle: true;
+    dynamic: false;
     flow: horizontal;
 }
 
@@ -42,7 +43,7 @@ element {
 }
 
 element-icon {
-  size: 20%;
+  size: 21%;
 }
 
 element-text {

@@ -1,4 +1,10 @@
 * {{
+    menu-border-colorr: {rofi-border}cc;
+    scrollbar-color: {rofi-scrollbar};
+    selected-item-color: {rofi-selected};
+    selected-item-border-color: {rofi-selected-border};
+    typing-box: {rofi-typing-box-color};
+
     active-background: {color13}cc;
     active-foreground: @foreground;
     normal-background: @background;
@@ -23,7 +29,6 @@
     background-color: @background;
     background: {foreground};
     foreground: {background};
-    border-color: @background;
     spacing: 2;
 }}
 

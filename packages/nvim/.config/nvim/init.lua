@@ -231,6 +231,19 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
+  {
+    'norcalli/nvim-colorizer.lua',
+    opts = {
+      '*', -- Habilita en todos los archivos
+      css = { rgb_fn = true }, -- Activa soporte para funciones rgb(...) en CSS
+      html = { mode = 'foreground', names = false }, -- Configuración para HTML
+      '!vim', -- Excluye archivos Vim
+    },
+    config = function(_, opts)
+      require('colorizer').setup(opts)
+    end,
+  },
+
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.

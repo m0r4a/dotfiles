@@ -1,0 +1,48 @@
+{
+    "checksum": "fe4fbfddf9a0e6c17c6a9d64f27f25da",
+    "wallpaper": "/home/m0r4a/Wallpapers/mountain_lake.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#030608",
+        "foreground": "#c0c0c1",
+        "cursor": "#c0c0c1"
+    },
+    "colors": {
+        "starship1": "#576963",
+        "starship2": "#728980",
+        "starship3": "#98b7ab",
+
+        "waybar_fg": "#98b7ab",
+        "waybar_bg": "#3c696b",
+
+        "waybar_workspace_active": "#ffefef",
+        "waybar_workspace_inactive": "#5a4d66",
+        "waybar_workspace_inactive_with_content": "#758c85",
+
+        "hyprland_border_1": "#6b8178",
+        "hyprland_border_2": "#3c696b",
+
+        "rofi-border": "#6b8178",
+        "rofi-scrollbar": "#6b8178",
+        "rofi-selected": "#98b7ab",
+        "rofi-selected-border": "#6b8178",
+        "rofi-typing-box-color": "#98b7ab",
+
+        "color0": "#030608",
+        "color1": "#1b3c40",
+        "color2": "#2d4e50",
+        "color3": "#576963",
+        "color4": "#6b8178",
+        "color5": "#728980",
+        "color6": "#878376",
+        "color7": "#888e93",
+        "color8": "#535f65",
+        "color9": "#255056",
+        "color10": "#3c696b",
+        "color11": "#758c85",
+        "color12": "#8fada0",
+        "color13": "#98b7ab",
+        "color14": "#b5af9e",
+        "color15": "#c0c0c1"
+    }
+}

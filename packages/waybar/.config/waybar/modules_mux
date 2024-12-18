@@ -10,14 +10,14 @@
   },
 
   "network": {
-    "interface": "wlan0",
+    "interface": "enp109s0",
     "format": "{ifname}",
     "format-wifi": "󰌢 {ipaddr}",
     "format-ethernet": "󰌢 {ipaddr}",
     "format-disconnected": "", //An empty format will hide the module.
     "tooltip-format": "{ifname} via {gwaddr} 󰊗",
     "tooltip-format-wifi": " {ifname} ({signalStrength}%)   ",
-    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-ethernet": "{ifname}  ",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50
   },

@@ -18,42 +18,49 @@
    }
 
    tooltip {
-       background: @color1;
+       background: @background;
        border-radius: 10px;
        border-width: 2px;
        border-style: solid;
        border-color: #11111b;
    }
-   /*-----module groups----*/
+
+   tooltip label {
+       color: @color14;
+   }
+
+/*-----module groups----*/
    .modules-left {
-       background-color: @color1;
+       background-color: @background;
        border: 0px solid #b4befe;
        border-radius: 10px;
 
    }
    .modules-center {
-       background-color: @color1;
+       background-color: @background;
        border: 0px solid #b4befe;
        border-radius: 10px;
    }
    .modules-right {
-       background-color: @color1;
+       background-color: @background;
        border: 0px solid #b4befe;
        border-radius: 10px;
    }
    #workspaces button {
        padding: 2px;
     /* Inactive workspace but with content */
-       color: @color13;
+       color: @workspace_inactive_with_content;
        margin-right: 5px;
    }
 
    #workspaces button.empty {
-       color: @color8;
+    /* Inactive workspace WITHOUT content */
+       color: @workspace_inactive;
     }
 
    #workspaces button.visible {
-       color: @color15;
+    /* The workspace you're in */
+       color: @workspace_active;
     }
 
    #workspaces button.urgent {
@@ -105,7 +112,7 @@
    #custom-weather.snowyIcyNight,
    #custom-weather.default 
    #idle_inhibitor {
-       color: @color14;
+       color: @foreground;
        padding: 0px 10px;
        border-radius:10px;
    }

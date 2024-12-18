@@ -3,20 +3,20 @@ format = """
 $os\
 [ ](#592693)\
 
-[]({color2})\
+[]({starship1})\
 $username\
-[](bg:{color5} fg:{color2})\
+[](bg:{starship2} fg:{starship1})\
 
 $directory\
-[](fg:{color5} bg:{color13})\
+[](fg:{starship2} bg:{starship3})\
 
 $rust\
 $python\
 
-[](fg:{color13})
+[](fg:{starship3})
 $cmd_duration\
 
-[ > ](fg:{color13})\
+[ > ](fg:{starship3})\
 """
 
 # Disable the blank line at the start of the prompt
@@ -26,7 +26,7 @@ add_newline = false
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:{color2} fg:#E0E0E0"
+style_user = "bg:{starship1} fg:#E0E0E0"
 style_root = "bg:#458488 fg:#ff0000"
 format = '[$user ]($style)'
 disabled = false
@@ -42,7 +42,7 @@ disabled = false
 Arch = " "
 
 [directory]
-style = "bg:{color5} fg:#E0E0E0"
+style = "bg:{starship2} fg:#E0E0E0"
 
 format = "[ $path ]($style)"
 truncation_length = 2
@@ -76,11 +76,11 @@ format = '[$duration](bold yellow)'
 
 [rust]
 symbol = ""
-style = "bg:{color13}"
+style = "bg:{starship3}"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = ""
-style = "bg:{color13}"
+style = "bg:{starship3}"
 format = '[ $symbol ($version) ]($style)'
 

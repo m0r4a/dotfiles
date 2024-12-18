@@ -1,0 +1,49 @@
+{
+    "checksum": "1ce7128eb4c2e9a33a3002a75b195ba3",
+    "wallpaper": "/home/m0r4a/Wallpapers/arbol.jpeg",
+    "alpha": "100",
+    "special": {
+        "background": "#050703",
+        "foreground": "#c0c1c0",
+        "cursor": "#c0c1c0"
+    },
+    "colors": {
+        "starship1": "#566f29",
+        "starship2": "#739437",
+        "starship3": "#90b945",
+
+        "waybar_fg": "#9eb6df",
+        "waybar_bg": "#335a9d",
+
+        "waybar_workspace_active": "#ffefef",
+        "waybar_workspace_inactive": "#5a4d66",
+        "waybar_workspace_inactive_with_content": "#6180b6",
+
+        "hyprland_border_1": "#90b945",
+        "hyprland_border_2": "#566f29",
+
+        "rofi-border": "#90b945",
+        "rofi-scrollbar": "#4d6ea7",
+        "rofi-selected": "#6180b6",
+        "rofi-selected-border": "#4d6ea7",
+        "rofi-typing-box-color": "#6180b6",
+
+
+        "color0": "#050703",
+        "color1": "#313f18",
+        "color2": "#454e24",
+        "color3": "#335490",
+        "color4": "#3b5d9c",
+        "color5": "#585e46",
+        "color6": "#7b7e5e",
+        "color7": "#8e9388",
+        "color8": "#5c6552",
+        "color9": "#425520",
+        "color10": "#5c6931",
+        "color11": "#4471c0",
+        "color12": "#4f7cd0",
+        "color13": "#767e5e",
+        "color14": "#a5a87e",
+        "color15": "#c0c1c0"
+    }
+}

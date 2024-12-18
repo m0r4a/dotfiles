@@ -66,12 +66,12 @@ main() {
   fi
 
   if [[ "$choice" == "$RANDOM_PIC_NAME" ]]; then
-    wal -s --cols16 -i "$RANDOM_PIC" -s
+    wal -s --cols16 -i "$RANDOM_PIC" --backend haishoku --theme $choice
     change_wal "$RANDOM_PIC"
   else
     for pic_path in "${PICS[@]}"; do
       if [[ "$(basename "$pic_path")" == "$choice"* ]]; then
-        wal -s --cols16 -i "$pic_path" -s
+        wal -s --cols16 -i "$pic_path" --backend haishoku --theme $choice
         change_wal "$pic_path"
         break
       fi

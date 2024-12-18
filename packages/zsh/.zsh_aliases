@@ -22,6 +22,7 @@ alias obs='flatpak run com.obsproject.Studio --enable-features=UseOzonePlatform 
 alias ls='lsd'
 alias exe='exercism'
 alias bksv='ssh m0r4a_low@192.168.1.69 -p 22'
+alias sv='ssh m0r4a@192.168.1.2 -p 22'
 alias mirror_refresh='sudo reflector --verbose --latest 15 --sort rate --save /etc/pacman.d/mirrorlist'
 
 # - Docker -

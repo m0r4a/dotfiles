@@ -1,6 +1,3 @@
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Master Config 1080p*/
-
 /* ---- Configuration ---- */
 
 configuration {
@@ -25,14 +22,14 @@ configuration {
 /* ---- Global Properties ---- */
 * {
 
-    background-alt:              @active-background; // Buttons background
-    selected:                    @active-background; // Button selected
-    active:                      @active-background; // Window activated
-    urgent:                      @selected; // When hovering the activated window (maybe more?)
+    background-alt:              #ff0000; // Buttons background
+    selected:                    @typing-box; // Button selected
+    active:                      #ff0000; // Window activated
+    urgent:                      #ff0000; // When hovering the activated window (maybe more?)
 
     text-selected:               #000000;
     text-color:                  #ffffff;
-    border-color:                @active-background;
+    border-color:                @menu-border-colorr;
 }
 
 /* ---- Window ---- */
@@ -43,7 +40,7 @@ window {
     transparency:               "real";
     cursor:                     "default";
     spacing:                    0px;
-    border:                     4px 0px 4px 0px;
+    border:                     3px 2px 3px 2px;
     border-radius:              30px;
     location:                   center;
     anchor:                     center;
@@ -146,7 +143,7 @@ button selected {
 scrollbar {
     width:        4px ;
     border:       0;
-    handle-color: @border-color;
+    handle-color: @scrollbar-color;
     handle-width: 8px ;
     padding:      0;
 }
@@ -177,8 +174,8 @@ element normal.active {
 element selected.normal {
     border:                      3px 3px 1px 3px;
     border-radius:               20px;
-    border-color:                @active-background;
-    background-color:            @active-background;
+    border-color:                @selected-item-border-color;
+    background-color:            @selected-item-color;
     text-color:                  #ffffff;
 }
 
@@ -213,7 +210,7 @@ element-text {
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
-    vertical-align:              0.5;
+    vertical-align:              0.0;
     horizontal-align:            0.0;
 }
 
