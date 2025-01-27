@@ -1,4 +1,4 @@
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/scripts:/snap/bin:/opt/sonar-scanner
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/scripts:/snap/bin:/opt/sonar-scanner:/home/m0r4a/.local/share/gem/ruby/3.3.0/bin
 
 # Importing my aliases
 source ~/.zsh_aliases
