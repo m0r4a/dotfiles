@@ -18,7 +18,7 @@
 
         "waybar_workspace_active": "#ffefef",
         "waybar_workspace_inactive": "#8e89a2",
-        "waybar_workspace_inactive_with_content": "#695da6",
+        "waybar_workspace_inactive_with_content": "#5d5194",
 
         "hyprland_border_1": "#777fcf",
         "hyprland_border_2": "#2c3774",

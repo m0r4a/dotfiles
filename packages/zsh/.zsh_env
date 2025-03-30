@@ -8,12 +8,11 @@ export OLLAMA_MODELS="$HOME/nvme/ollama_models"
 export QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough
 export QT_ENABLE_HIGHDPI_SCALING=1
 export QT_SCALE_FACTOR=1
-export QT_QPA_PLATFORM=xcb
+export QT_QPA_PLATFORM=wayland
 
 # This are the variables for the GTK darkmode 
 export GTK_THEME=Adwaita:dark
 export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export QT_STYLE_OVERRIDE=Adwaita-Dark
 
 # Language environment
 export LANG=en_US.UTF-8

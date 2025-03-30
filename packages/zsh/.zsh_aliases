@@ -16,6 +16,7 @@ alias grep='rg'
 
 alias v='nvim'
 alias vim='nvim'
+alias z='zen-browser'
 alias c='wl-copy'
 alias p='python3'
 alias obs='flatpak run com.obsproject.Studio --enable-features=UseOzonePlatform --ozone-platform=wayland & disown'
