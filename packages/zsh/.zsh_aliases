@@ -25,6 +25,7 @@ alias exe='exercism'
 alias bksv='ssh m0r4a_low@192.168.1.69 -p 22'
 alias sv='ssh m0r4a@192.168.1.2 -p 22'
 alias mirror_refresh='sudo reflector --verbose --latest 15 --sort rate --save /etc/pacman.d/mirrorlist'
+alias tst='tt -words /home/m0r4a/workspace/programming/Go/tt/words/tech -n 10 -g 5 -highlight1 -noskip -nobackspace'
 
 # - Docker -
 alias dc='docker-compose'

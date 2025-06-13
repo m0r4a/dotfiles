@@ -27,7 +27,6 @@
 "modules-right": [
 	"tray", 
 	"battery", 
-	"clock",
 ]
 
 }

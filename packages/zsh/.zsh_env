@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Electron shit
+#export ELECTRON_OZONE_PLATFORM_HINT=auto
+#export OZONE_PLATFORM=wayland
+
 # Changing Ollama models location
 export OLLAMA_MODELS="$HOME/nvme/ollama_models"
 

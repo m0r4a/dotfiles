@@ -32,3 +32,18 @@ Exec=/usr/bin/vesktop --enable-features=UseOzonePlatform --ozone-platform=waylan
 
 If not works at first sight make sure that you indeed closed Vesktop instead of just minimizing it, you can just log out and log back in to be completely sure.
 
+### Electron apps not working when forcing wayland
+
+At least for me that happens due to the double graphics card setup (integrated and dedicated) my "fix" for it was to disable the loading of the Intel drivers from the kernel
+
+```bash
+sudo tee /etc/modprobe.d/blacklist-intel.conf <<EOF                 
+# Stop Intel drivers from loading
+blacklist i915
+options i915 modeset=0
+EOF
+
+sudo mkinitcpio -P
+```
+
+Then reboot
