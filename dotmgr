@@ -20,6 +20,8 @@ COLORS = {
     'GREEN': "\033[32m",
     'RED': "\033[31m",
     'YELLOW': "\033[33m",
+    'BLUE': "\033[34m",
+    'CYAN': "\033[36m",
     'RESET': "\033[0m"
 }
 
@@ -291,39 +293,96 @@ class TerminalUI:
             tty.setraw(fd)
             ch = sys.stdin.read(1)
             if ch == '\x1b':
-                ch += sys.stdin.read(2)
+                # Check if there's more input for escape sequences
+                next_chars = ''
+                try:
+                    # Set a very short timeout to see if more chars are coming
+                    import select
+                    if select.select([sys.stdin], [], [], 0.1)[0]:
+                        next_chars = sys.stdin.read(2)
+                except Exception:
+                    pass
+
+                if next_chars:
+                    ch += next_chars
+                # If no more chars, it's just ESC
+
             return ch
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 
     @staticmethod
-    def draw_menu(items: List[Tuple[str, bool]], active: int, title: str) -> None:
+    def draw_menu(items: List[Tuple[str, bool]], active: int, title: str,
+                  search_mode: bool = False, search_query: str = "") -> None:
         """Draw the interactive menu with pagination of 15 items."""
-        print("\033c", end="")  # Clear screen
+        # Hide cursor and clean the screen
+        print("\033[2J\033[H", end="")
         print(title)
 
-    # Find the range for the elements to show
+        if search_mode:
+            print(f"{COLORS['CYAN']}> {COLORS['RESET']} {search_query}\n")
+
+        # Find the range for the elements to show
         total_items = len(items)
         items_to_show = 20
         start_index = max(0, min(active - 7, total_items - items_to_show))
         end_index = min(start_index + items_to_show, total_items)
 
-    # Show ... if not printing the first element
+        # Show ... if not printing the first element
         if start_index > 0:
             print("  ...")
 
-    # Move around
+        # Move around
         for i in range(start_index, end_index):
             prefix = "[*]" if items[i][1] else "[ ]"
-            cursor = "> " if i == active else "  "
+            if search_mode:
+                cursor = "  " if i == active else "  "
+            else:
+                cursor = "> " if i == active else "  "
             print(f"{cursor}{prefix} {items[i][0]}")
 
-    # Show ... if there's more elements to show
+        # Show ... if there's more elements to show
         if end_index < total_items:
             print("  ...")
 
         print("\nControls:")
-        print("↑/k/p: Up | ↓/j/n: Down | Space: Toggle | Enter: Confirm | q: Quit")
+        if search_mode:
+            print("Type to search | ESC: Exit search | Enter: Select | q: Quit")
+        else:
+            print(
+                "↑/k/p: Up | ↓/j/n: Down | Space: Toggle | /: Search | Enter: Confirm | q: Quit")
+
+
+class FuzzyFinder:
+    @staticmethod
+    def fuzzy_search(query: str, items: List[Tuple[str, bool]]) -> List[Tuple[str, bool]]:
+        """Perform fuzzy search on items based on query."""
+        if not query:
+            return items
+
+        query = query.lower()
+        matches = []
+
+        for item_name, item_state in items:
+            # Extract the actual name without status indicators
+            clean_name = item_name.split(" ")[0].lower()
+
+            # Simple fuzzy matching: check if all characters in query appear in order
+            if FuzzyFinder._fuzzy_match(query, clean_name):
+                matches.append((item_name, item_state))
+
+        return matches
+
+    @staticmethod
+    def _fuzzy_match(query: str, text: str) -> bool:
+        """Check if query fuzzy matches text."""
+        query_idx = 0
+
+        for char in text:
+            if query_idx < len(query) and char == query[query_idx]:
+                query_idx += 1
+
+        return query_idx == len(query)
 
 
 class Menu:
@@ -332,34 +391,88 @@ class Menu:
         self.package_manager = package_manager
         self.title = title
         self.items = items
+        self.filtered_items = items[:]
         self.original_items = self.items[:]
         self.active = 0
+        self.search_mode = False
+        self.search_query = ""
         self._key_actions = {
             'q': lambda: True,
             '\r': lambda: True,
             ' ': self._toggle_current_item,
+            '/': self._enter_search_mode,
             **{k: self._move_up for k in ['k', 'p', '\x1b[A']},
             **{k: self._move_down for k in ['j', 'n', '\x1b[B']}
         }
 
     def _move_up(self) -> bool:
-        self.active = (self.active - 1) % len(self.items)
+        if self.filtered_items:
+            self.active = (self.active - 1) % len(self.filtered_items)
         return False
 
     def _move_down(self) -> bool:
-        self.active = (self.active + 1) % len(self.items)
+        if self.filtered_items:
+            self.active = (self.active + 1) % len(self.filtered_items)
         return False
 
     def _toggle_current_item(self) -> bool:
-        self.items[self.active] = (
-            self.items[self.active][0],
-            not self.items[self.active][1]
-        )
+        if not self.filtered_items:
+            return False
+
+        current_item = self.filtered_items[self.active]
+        new_state = not current_item[1]
+
+        # Update in filtered items
+        self.filtered_items[self.active] = (current_item[0], new_state)
+
+        # Update in original items
+        for i, (name, _) in enumerate(self.items):
+            if name == current_item[0]:
+                self.items[i] = (name, new_state)
+                break
+
+        return False
+
+    def _enter_search_mode(self) -> bool:
+        self.search_mode = True
+        # Keep the existing search query to allow editing
+        return False
+
+    def _exit_search_mode(self) -> bool:
+        self.search_mode = False
+        # Keep the search query and filtered items - don't reset them
+        return False
+
+    def _update_search(self, char: str) -> bool:
+        if char == '\x7f':  # Backspace
+            if self.search_query:
+                self.search_query = self.search_query[:-1]
+        elif char == '\x1b':  # ESC key (standalone)
+            return self._exit_search_mode()
+        elif char == '\r':  # Enter
+            self.search_mode = False
+            return False
+        elif char.isprintable():
+            self.search_query += char
+
+        # Update filtered items - always search from original items
+        # This allows modifying the search while keeping the base as original
+        self.filtered_items = FuzzyFinder.fuzzy_search(
+            self.search_query, self.items)
+        self.active = 0
         return False
 
     def handle_input(self) -> bool:
         """Handle single keypress input."""
         key = TerminalUI.get_key()
+
+        if self.search_mode:
+            return self._update_search(key)
+
+        # Handle ESC in normal mode (in case it gets through)
+        if key == '\x1b':
+            return False
+
         action = self._key_actions.get(key, lambda: False)
         return action()
 
@@ -376,7 +489,8 @@ class Menu:
     def run(self) -> Tuple[List[str], List[str]]:
         """Run the interactive menu loop."""
         while True:
-            TerminalUI.draw_menu(self.items, self.active, self.title)
+            TerminalUI.draw_menu(self.filtered_items, self.active, self.title,
+                                 self.search_mode, self.search_query)
             if self.handle_input():
                 break
 
@@ -444,6 +558,7 @@ def apply_changes(package_manager: PackageManager,
         print("Applying changes...")
         package_manager.update_packages(enabled, disabled)
         print("Done!")
+        sys.stdout.write('\033[?25h')  # Give cursor back
     except KeyboardInterrupt:
         print("\nOperation cancelled.")
 
@@ -487,6 +602,7 @@ def handle_import_mode(package_manager: PackageManager) -> None:
             package_manager.deimport_config(config)
 
         print("Done!")
+        sys.stdout.write('\033[?25h')  # Give cursor back
     except KeyboardInterrupt:
         print("\nOperation cancelled.")
 
@@ -540,6 +656,9 @@ def _display_package_list(title: str, packages: List[str]) -> None:
 def main():
     """Main program loop."""
     try:
+        sys.stdout.write('\033[?25l')
+        sys.stdout.flush()
+
         check_stow_installed()
         parser = create_parser()
         args = parser.parse_args()
@@ -564,15 +683,19 @@ def main():
 
         if not enabled and not disabled:
             print("\nNo changes to apply.")
-            return
+            sys.stdout.write('\033[?25h')  # Give cursor back
+            sys.exit(0)
 
         menu.display_changes(enabled, disabled)
         apply_changes(package_manager, enabled, disabled)
 
     except KeyboardInterrupt:
         print("\nOperation cancelled.")
+        sys.stdout.write('\033[?25h')  # Give cursor back
+
     except Exception as e:
         print(f"\nError: {e}")
+        sys.stdout.write('\033[?25h')  # Give cursor back
         sys.exit(1)
 
 

@@ -4,8 +4,11 @@ export ZSH="$HOME/.oh-my-zsh"
 # Electron shit
 #export ELECTRON_OZONE_PLATFORM_HINT=auto
 #export OZONE_PLATFORM=wayland
+#
+# Explicit 
+export XDG_CURRENT_DESKTOP="Hyprland"
 
-# Changing Ollama models location
+#deicated Changing Ollama models location
 export OLLAMA_MODELS="$HOME/nvme/ollama_models"
 
 # Export var to make QT apps run in wayland

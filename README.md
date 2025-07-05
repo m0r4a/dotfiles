@@ -54,9 +54,15 @@ This repository houses my personal dotfiles for tools like Neovim, Hyprland, Zsh
 
 4. Ensure your dotfiles are organized under the `packages/` directory.
 
-5. Run the package manager in interactive mode:
+5. Give execute permission to `dotmgr`
+
    ```
-   python3 package_manager.py
+   chmod u+x dotmgr
+   ```
+
+6. Run the package manager in interactive mode:
+   ```
+   ./dotmgr
    ```
 
 6. Alternatively, use command-line options for specific tasks (see [Available Commands](#available-commands)).
@@ -76,16 +82,16 @@ You can use the following command-line options to manage your configurations:
 Examples:
 ```
 # Enable configurations for nvim and zsh
-python3 manager.py -i nvim zsh
+./dotmgr -i nvim zsh
 
 # Disable the nvim configuration
-python3 manager.py -r nvim
+./dotmgr -r nvim
 
 # List all enabled packages
-python3 manager.py -le
+./dotmgr -le
 
 # List all disabled packages
-python3 manager.py -ld
+./dotmgr -ld
 ```
 
 ## How It Works
