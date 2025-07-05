@@ -63,8 +63,9 @@ source $ZSH/oh-my-zsh.sh
 #    pokemon=$(randomFilePicker ~/.config/fastfetch/PokeList)
 # fi
 
-
-fastfetch --kitty ~/.config/fastfetch/darkrai.png --logo-padding-right 2 --logo-padding-left 3
+if [ $(echo $TERM) = "xterm-kitty" ]; then
+  fastfetch --kitty ~/.config/fastfetch/darkrai.png --logo-padding-right 2 --logo-padding-left 3
+fi
 
 # Syntax highlighting plugin for oh-my-zsh
 
