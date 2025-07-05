@@ -15,6 +15,7 @@ import subprocess
 import shutil
 import argparse
 from typing import List, Tuple
+from contextlib import contextmanager
 
 COLORS = {
     'GREEN': "\033[32m",
@@ -32,6 +33,20 @@ PACKAGE_INSTALL_COMMANDS = {
     'macos': 'brew install stow',
     'windows': 'why are you using windows?'
 }
+
+
+@contextmanager
+def cursor_manager():
+    """Context manager to handle cursor visibility."""
+    try:
+        # Hide cursor
+        sys.stdout.write('\033[?25l')
+        sys.stdout.flush()
+        yield
+    finally:
+        # Always restore cursor, even if an exception occurs
+        sys.stdout.write('\033[?25h')
+        sys.stdout.flush()
 
 
 def create_parser() -> argparse.ArgumentParser:
@@ -558,7 +573,6 @@ def apply_changes(package_manager: PackageManager,
         print("Applying changes...")
         package_manager.update_packages(enabled, disabled)
         print("Done!")
-        sys.stdout.write('\033[?25h')  # Give cursor back
     except KeyboardInterrupt:
         print("\nOperation cancelled.")
 
@@ -580,15 +594,13 @@ def handle_import_mode(package_manager: PackageManager) -> None:
 
     if to_import:
         print("\nConfigurations to import:")
-
         print(f"{COLORS['GREEN']}To import:{
               COLORS['RESET']}", ", ".join(to_import))
 
     if to_deimport:
         print("\nConfigurations to de-import:")
-
-        print(f"{COLORS['GREEN']}To de-import:{
-              COLORS['RESET']}", ", ".join(to_deimport))
+        print(f"{COLORS['GREEN']}To de-import:{COLORS['RESET']}",
+              ", ".join(to_deimport))
 
     print("\nPress Enter to confirm or Ctrl+C to cancel...")
     try:
@@ -602,7 +614,6 @@ def handle_import_mode(package_manager: PackageManager) -> None:
             package_manager.deimport_config(config)
 
         print("Done!")
-        sys.stdout.write('\033[?25h')  # Give cursor back
     except KeyboardInterrupt:
         print("\nOperation cancelled.")
 
@@ -655,47 +666,42 @@ def _display_package_list(title: str, packages: List[str]) -> None:
 
 def main():
     """Main program loop."""
+    check_stow_installed()
+    parser = create_parser()
+    args = parser.parse_args()
+
     try:
-        sys.stdout.write('\033[?25l')
-        sys.stdout.flush()
+        with cursor_manager():
+            package_manager = PackageManager()
 
-        check_stow_installed()
-        parser = create_parser()
-        args = parser.parse_args()
-        package_manager = PackageManager()
+            # Check if there are any packages to manage
+            if not check_packages_exist(package_manager.packages_dir) and not getattr(args, 'import'):
+                return
 
-        # Check if there are any packages to manage
-        if not check_packages_exist(package_manager.packages_dir) and not getattr(args, 'import'):
-            sys.exit(0)
+            if getattr(args, 'import'):
+                handle_import_mode(package_manager)
+                return
 
-        if getattr(args, 'import'):
-            handle_import_mode(package_manager)
-            return
+            if any([args.install, args.remove, args.list_enabled,
+                   args.list_disabled, args.list_all]):
+                handle_cli_mode(args, package_manager)
+                return
 
-        if any([args.install, args.remove, args.list_enabled,
-               args.list_disabled, args.list_all]):
-            handle_cli_mode(args, package_manager)
-            return
+            menu = Menu(package_manager, package_manager.get_packages(),
+                        "Select packages to enable/disable\n")
+            enabled, disabled = menu.run()
 
-        menu = Menu(package_manager, package_manager.get_packages(
-        ), "Select packages to enable/disable\n")
-        enabled, disabled = menu.run()
+            if not enabled and not disabled:
+                print("\nNo changes to apply.")
+                return
 
-        if not enabled and not disabled:
-            print("\nNo changes to apply.")
-            sys.stdout.write('\033[?25h')  # Give cursor back
-            sys.exit(0)
-
-        menu.display_changes(enabled, disabled)
-        apply_changes(package_manager, enabled, disabled)
+            menu.display_changes(enabled, disabled)
+            apply_changes(package_manager, enabled, disabled)
 
     except KeyboardInterrupt:
         print("\nOperation cancelled.")
-        sys.stdout.write('\033[?25h')  # Give cursor back
-
     except Exception as e:
         print(f"\nError: {e}")
-        sys.stdout.write('\033[?25h')  # Give cursor back
         sys.exit(1)
 
 
