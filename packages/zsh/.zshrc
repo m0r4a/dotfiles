@@ -51,17 +51,23 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# This function lets you convert .dot files from the
+# Python “diagrams” library to .png images with no background.
+dotpng() {
+  local name="${1%.*}"
+  local input="${name}.dot"
+  local output="${name}.png"
 
-# Fastfetch 
+  if [[ ! -f "$input" ]]; then
+    echo "❌ Error: '$input' does not exist." >&2
+    return 1
+  fi
 
-####### Old script, I will keep the code in case I figure out to fix it ######
-# shiny=$((RANDOM % 500 + 1))
+  dot -Tpng -Ncolor=black -Nfontcolor=white -Gfontcolor=white -Gbgcolor=transparent "$input" -o "$output" \
+    && echo "✅ Generated: $output" \
+    || echo "❌ Failed to generate PNG from $input" >&2
+}
 
-# if [ "$shiny" -eq 265 ]; then
-#    pokemon=$(randomFilePicker ~/.config/fastfetch/PokeList/shiny)
-# else
-#    pokemon=$(randomFilePicker ~/.config/fastfetch/PokeList)
-# fi
 
 if [ $(echo $TERM) = "xterm-kitty" ]; then
   fastfetch --kitty ~/.config/fastfetch/darkrai.png --logo-padding-right 2 --logo-padding-left 3

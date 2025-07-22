@@ -1,6 +1,6 @@
 {
   "wireplumber": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}{volume}%",
     "format-muted": " Mute",
     "on-click": "~/.config/hypr/scripts/volume --toggle",
     "on-click-right": "pavucontrol",

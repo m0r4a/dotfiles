@@ -1,5 +1,6 @@
 # - Commands -
 
+alias aaaa='cd ~/workspace/docker/hacking_env/'
 alias off='shutdown now'
 alias blackcategories="pacman -Sg | grep blackarch | sed 's/blackarch-/ /'"
 #alias rmss='rm ~/Screenshots/*'

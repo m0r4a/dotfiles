@@ -16,7 +16,7 @@ RANDOM_PIC=""
 
 # Loop until the random pic isn't the same as the current one
 while [[ "$RANDOM_PIC" == "$CURRENT_WALLPAPER_PATH" || -z "$RANDOM_PIC" ]]; do
-    RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
+  RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
 done
 
 RANDOM_PIC_NAME="random"
@@ -46,7 +46,7 @@ change_wal() {
   cp $wallpaper ~/.config/rofi/.current_wallpaper
 
   config_file="$HOME/.config/hypr/hyprpaper.conf"
-  cat > "$config_file" << EOF
+  cat >"$config_file" <<EOF
 preload = $wallpaper
 wallpaper = eDP-1, $wallpaper
 wallpaper = HDMI-A-1, $wallpaper
@@ -66,7 +66,8 @@ main() {
   fi
 
   if [[ "$choice" == "$RANDOM_PIC_NAME" ]]; then
-    wal -s --cols16 -i "$RANDOM_PIC" --backend haishoku --theme $choice
+    random_pic_basename=$(basename "$RANDOM_PIC" | cut -d. -f1)
+    wal -s --cols16 -i "$RANDOM_PIC" --backend haishoku --theme $random_pic_basename
     change_wal "$RANDOM_PIC"
   else
     for pic_path in "${PICS[@]}"; do

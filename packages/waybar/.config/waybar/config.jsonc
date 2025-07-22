@@ -1,6 +1,6 @@
 {
 
-"include": "~/.config/waybar/modules_other",
+"include": "~/.config/waybar/modules_mux",
 "layer": "top",
 //"mode": "dock",
 "exclusive": true,
