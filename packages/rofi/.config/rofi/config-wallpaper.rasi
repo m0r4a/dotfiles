@@ -39,15 +39,21 @@ element {
   orientation: vertical;
   padding: 0px;
   spacing: 0px;
-  border-radius: 15px;
 }
 
 element-icon {
-  size: 21%;
+  size: 13em;
+  padding: 0px;
+  spacing: 0px;
+  vertical-align: 0.5;
+  margin: -25px 0px -45px 0px; // top, right, bottom, left
+  expand: false;
 }
 
 element-text {
-  font: "Fira Code SemiBold 12";
-  vertical-align: 0.5;
+  font: "FiraCode Nerd Font Medium 12";
+  vertical-align: 1;
   horizontal-align: 0.5;
+  margin: 0px 0px 20px 0px;
+  expand: false;
 }

@@ -7,6 +7,7 @@ Im looking forward to turn this into a blog or something so people can find solu
 ## Table of Contents
 
 - [Electron apps not running with ozone flags](#electron-apps-not-running-with-ozone-flags)
+- [Brightnessclt not working](#brighnessctl-not-working)
 
 ### Electron apps not running with ozone flags
 
@@ -47,3 +48,9 @@ sudo mkinitcpio -P
 ```
 
 Then reboot
+
+### Brighnessctl not working
+
+In my case I have to add on the bootloader (systemd's but usually it's GRUB) the following variable:
+
+`acpi_backlight=native`
